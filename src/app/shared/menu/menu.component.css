@@ -1,0 +1,29 @@
+.container-menu {
+    width: 70px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-opt {
+    width: 100%;
+    height: 100%;
+}
+
+.img-opt {
+    width: 100%;
+    pointer-events: none;
+}
+
+.mat-button {
+    border-radius: 0px;     
+}
+
+.mat-raised-button {
+    border-radius: 0px;   
+}
+
+.mat-button, .mat-raised-button{
+    background-color: var(--primary-color);
+} 

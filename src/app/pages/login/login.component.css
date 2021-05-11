@@ -1,0 +1,79 @@
+.login-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: no-repeat center/100% url("./../../../assets/img/14885.jpg");
+}
+
+.login-card {
+    width: 60%;
+    height: 60%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.25);
+}
+
+.card-image {
+    width: 50%;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-form {
+    width: 50%;
+    height: 100%;
+    background-color: var(--form-color);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 20px;
+}
+
+.example-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+mat-label, input {
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    font-size: 16px;
+    height: 45px;
+}
+
+.mat-button, .mat-raised-button{
+    background-color: var(--secondary-color);
+} 
+
+.title-form {
+    width: 100%;
+}
+
+h1 {
+    margin: 0;
+}
+
+.card-image p {
+    color: white;
+    font-size: 20px;
+}

@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-html, body { height: 100%; }
+:root {
+    --primary-color: #154360;
+    --secondary-color: #2980B9;
+    --form-color: #f1f1f1;
+}
+
+html, body, app-root { 
+    height: 100%;
+}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+router-outlet {
+    display: none;
+}
