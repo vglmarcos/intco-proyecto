@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Location } from "@angular/common";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
-
   //https://stackoverflow.com/questions/63101535/change-css-variables-dynamically-in-angular
 
-  ngOnInit(): void {
-  }
+  @Input('title')
+  public title: string = '';
+
+  constructor(
+    private location: Location,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void { }
 
 }

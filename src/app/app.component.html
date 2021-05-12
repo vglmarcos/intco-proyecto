@@ -4,7 +4,7 @@
 <ng-template #elseBlock>
     <div class="container-app">
         <app-menu></app-menu>
-        <app-header></app-header>
+        <app-header [title]="title"></app-header>
         <div class="container-main">
             <router-outlet></router-outlet>
         </div>
