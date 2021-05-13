@@ -12,6 +12,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { BuscarCotizacionComponent } from './pages/buscar-cotizacion/buscar-cotizacion.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu'
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { HeaderComponent } from './shared/header/header.component';
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
