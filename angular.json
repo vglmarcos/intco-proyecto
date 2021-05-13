@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "interfaces-proyecto"
+  "defaultProject": "interfaces-proyecto",
+  "cli": {
+    "analytics": false
+  }
 }

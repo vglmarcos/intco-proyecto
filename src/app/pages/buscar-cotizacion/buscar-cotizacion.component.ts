@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 
 export interface UserData {
@@ -46,6 +46,7 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
   ngAfterViewInit() {

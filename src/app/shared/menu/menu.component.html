@@ -1,5 +1,5 @@
 <div class="container-menu">
-    <button class="btn-opt" *ngFor="let opcion of OPCIONES" mat-raised-button color="primary">
+    <button class="btn-opt" *ngFor="let opcion of OPCIONES" mat-raised-button color="primary" [matTooltip]='opcion.tooltip' matTooltipPosition="after">
         <img class="img-opt" [src]="opcion.image" alt="">
     </button>
 </div>

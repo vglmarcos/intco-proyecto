@@ -3,11 +3,15 @@
         <h1>{{title}}</h1>
     </div>
     <div class="header-profile">
-        <button mat-stroked-button>
+        <button mat-stroked-button [matMenuTriggerFor]="menuProfile">  
             <div class="button-content">
                 <img src="assets/img/perfil.png" alt="Perfil">
                 <h1>Perfil</h1>
             </div>
         </button>
+        <mat-menu #menuProfile="matMenu">
+            <button mat-menu-item>Hola</button>
+            <buton mat-menu-item>Hola</buton>
+        </mat-menu>
     </div>
 </div>
