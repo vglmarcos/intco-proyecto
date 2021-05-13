@@ -24,5 +24,6 @@ app-header {
 }
 
 .container-main {
+    margin: 30px 70px;
     grid-area: main;
 }

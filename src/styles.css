@@ -10,6 +10,7 @@
 
 html, body, app-root { 
     height: 100%;
+    background-color: var(--form-color);
 }
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

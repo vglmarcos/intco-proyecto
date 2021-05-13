@@ -12,8 +12,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { BuscarCotizacionComponent } from './pages/buscar-cotizacion/buscar-cotizacion.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu'
 
@@ -35,6 +37,8 @@ import { MatMenuModule } from '@angular/material/menu'
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
     MatTooltipModule,
     MatMenuModule
   ],
