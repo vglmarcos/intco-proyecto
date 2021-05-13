@@ -27,3 +27,7 @@
 .mat-button, .mat-raised-button{
     background-color: var(--primary-color);
 } 
+
+.mat-button:hover, .mat-raised-button:hover{
+    background-color: var(--secondary-color);
+}

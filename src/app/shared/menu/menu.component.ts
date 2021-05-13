@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IOpcion } from './IOpcion';
 import { opciones } from './opciones';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-menu',
