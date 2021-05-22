@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AgregarCotizacionComponent } from './agregar-cotizacion/agregar-cotizacion.component';
 
 export interface UserData {
   id: string;
@@ -43,7 +45,10 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public colorThemeService: ColorThemeService) {
+  constructor(
+    public colorThemeService: ColorThemeService,
+    public dialog: MatDialog
+  ) {
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
@@ -86,6 +91,23 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
 
   onDelete(row: any) {
     console.log(row);
+  }
+
+  agregarCotizacion() {
+    const dialogRef = this.dialog.open(AgregarCotizacionComponent, {
+      data: 'datos',
+      width: "600px",
+      height: "400px",
+      autoFocus: false 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        console.log(`Dialog result: ${result.res}`);
+      } else {
+        console.log(`Exit on click outside`);
+      }
+    });
   }
 
 }

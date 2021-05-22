@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {MatInputModule} from '@angular/material/input';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AgregarCotizacionComponent } from './pages/buscar-cotizacion/agregar-cotizacion/agregar-cotizacion.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     LoginComponent,
     MenuComponent,
     BuscarCotizacionComponent,
-    HeaderComponent
+    HeaderComponent,
+    AgregarCotizacionComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatTooltipModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule,
+    MatStepperModule
   ],
   providers: [ColorThemeService],
   bootstrap: [AppComponent]

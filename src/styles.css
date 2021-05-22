@@ -18,3 +18,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 router-outlet {
     display: none;
 }
+
+.mat-dialog-container {
+    padding: 0px !important;
+    border-radius: 0 !important;
+}

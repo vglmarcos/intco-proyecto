@@ -7,7 +7,7 @@
                 <mat-icon color="accent" class="search-icon" matPrefix>search</mat-icon>
             </span>
         </mat-form-field>
-        <button  [class]='colorMode' class="add-btn" mat-fab matTooltip="Crear Cotización" [color] = "color" (mouseover) =" color = 'warn'" (mouseout) =" color = 'accent'">
+        <button (click)="agregarCotizacion()" [class]='colorMode' class="add-btn" mat-fab matTooltip="Crear Cotización" [color] = "color" (mouseover) =" color = 'warn'" (mouseout) =" color = 'accent'">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -62,6 +62,6 @@
             </tr>
         </table>
 
-        <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[7]"></mat-paginator>
+        <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[6]"></mat-paginator>
     </div>
 </div>
