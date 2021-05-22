@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 70px;
-    background-color: white;
 }
 
 .header-title h1 {
@@ -20,14 +19,14 @@
     align-items: center;
 }
 
-.button-content img {
-    height: 40px;
-    margin-right: 20px;
-    pointer-events: none;
+.header-profile button h1 {
+    margin: 0;
+    margin-left: 20px;
 }
 
 .button-content h1 {
     margin: 0;
+    margin-left: 20px;
 }
 
 .header-profile button {
@@ -41,3 +40,7 @@
     flex-wrap: nowrap;
     align-items: center;
 }
+
+::ng-deep .menu {
+    background: #222 !important;
+  }

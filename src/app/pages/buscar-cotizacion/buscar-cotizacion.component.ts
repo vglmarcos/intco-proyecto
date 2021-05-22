@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { ColorThemeService } from 'src/app/services/color-theme.service';
 
 export interface UserData {
   id: string;
@@ -30,6 +31,11 @@ const NAMES: string[] = [
   ]
 })
 export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
+  color = 'accent';
+  public actualTheme: string;
+  dark = 'dark';
+  light = 'light';
+  public colorMode: string;
 
   displayedColumns: string[] = ['id', 'name', 'progress', 'color', 'acciones'];
   dataSource: MatTableDataSource<UserData>;
@@ -37,12 +43,27 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { 
+  constructor(public colorThemeService: ColorThemeService) {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+
+    this.colorThemeService.theme.subscribe((theme) => {
+      this.actualTheme = theme;
+      this.viewColor();
+    });
+  }
+
+  viewColor() {
+    if (this.actualTheme.includes(this.dark)) {
+      this.colorMode = this.dark;
+    }
+    if (this.actualTheme.includes(this.light)) {
+      this.colorMode = this.light;
+    }
+    console.log(this.colorMode);
   }
 
   ngOnInit(): void {
@@ -72,7 +93,7 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
 /** Builds and returns a new User. */
 function createNewUser(id: number): UserData {
   const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
   return {
     id: id.toString(),

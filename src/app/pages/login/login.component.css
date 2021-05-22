@@ -5,7 +5,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: no-repeat center/100% url("./../../../assets/img/14885.jpg");
+}
+
+.backLight{
+    background: no-repeat center/100% url("./../../../assets/img/lightfondo.jpg");
+}
+
+.backDark {
+    background: no-repeat center/100% url("./../../../assets/img/darkfondo3.jpg");
 }
 
 .login-card {
@@ -22,20 +29,32 @@
 .card-image {
     width: 50%;
     height: 100%;
-    background-color: var(--primary-color);
     border-radius: 10px 0 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+}
+
+.logo {
+    margin-bottom: 50px;
+    width: 100%;
 }
 
 .card-form {
     width: 50%;
     height: 100%;
-    background-color: var(--form-color);
     border-radius: 0 10px 10px 0;
     padding: 20px 20px;
+}
+
+.cardDark{
+    background-color: #252525;
+}
+
+.cardLight{
+    background-color: var(--form-color);
 }
 
 .example-form {
@@ -76,4 +95,156 @@ h1 {
 .card-image p {
     color: white;
     font-size: 20px;
+}
+
+.light-cyan-theme,
+.light-cyan-button {
+    background-color: #006064 !important;
+    color: #fff !important;
+}
+
+.light-cyan-button:hover{
+    background-color: #00ACC1 !important;
+}
+
+.dark-cyan-theme,
+.dark-cyan-button{
+    background-color: #00B8D4 !important;
+}
+
+.dark-cyan-button:hover{
+    background-color: #00E5FF !important;
+}
+
+.light-blue-theme,
+.light-blue-button {
+    background-color: #01579B !important;
+    color: #fff !important;
+}
+
+.light-blue-button:hover{
+    background-color: #039BE5 !important;
+}
+
+.dark-blue-theme,
+.dark-blue-button{
+    background-color: #0091EA !important;
+}
+
+.dark-blue-button:hover{
+    background-color: #00B0FF !important;
+}
+
+.light-purple-theme,
+.light-purple-button {
+    background-color: #4A148C !important;
+    color: #fff !important;
+}
+
+.light-purple-button:hover{
+    background-color: #8E24AA !important;
+}
+
+.dark-purple-theme,
+.dark-purple-button {
+    background-color: #AA00FF !important;
+}
+
+.dark-purple-button:hover{
+    background-color: #E040FB !important;
+}
+
+.light-pink-theme,
+.light-pink-button {
+    background-color: #880E4F !important;
+    color: #fff !important;
+}
+
+.light-pink-button:hover {
+    background-color: #D81B60 !important;
+}
+
+.dark-pink-theme,
+.dark-pink-button {
+    background-color: #C51162 !important;
+}
+
+.dark-pink-button:hover {
+    background-color: #F50057 !important;
+}
+
+.light-orange-theme,
+.light-orange-button {
+    background-color: #E65100 !important;
+    color: #fff !important;
+}
+
+.light-orange-button:hover {
+    background-color: #FB8C00 !important;
+}
+
+.dark-orange-theme,
+.dark-orange-button {
+    background-color: #FFAB00 !important;
+}
+
+.dark-orange-button:hover {
+    background-color: #FFC400 !important;
+}
+
+.light-teal-theme,
+.light-teal-button {
+    background-color: #004D40 !important;
+    color: #fff !important;
+}
+
+.light-teal-button:hover {
+    background-color: #00897B !important;
+}
+
+.dark-teal-theme,
+.dark-teal-button {
+    background-color: #00BFA5 !important;   
+}
+
+.dark-teal-button:hover{
+    background-color: #1DE9B6 !important;
+}
+
+.light-green-theme,
+.light-green-button {
+    background-color: #33691E !important;
+    color: #fff !important;
+}
+
+.light-green-button:hover {
+    background-color: #7CB342  !important;
+}
+
+.dark-green-theme,
+.dark-green-button {
+    background-color: #8BC34A !important;   
+}
+
+.dark-green-button:hover{
+    background-color: #AED581 !important;
+}
+
+.light-gray-theme,
+.light-gray-button {
+    background-color: #212121 !important;
+    color: #fff !important;
+}
+
+.light-gray-button:hover {
+    background-color: #757575  !important;
+}
+
+.dark-gray-theme,
+.dark-gray-button {
+    background-color: #9e9e9e !important;   
+}
+
+.dark-gray-button:hover{
+    background-color: #BDBDBD !important;
 }

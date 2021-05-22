@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -12,24 +11,298 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$interfaces-proyecto-primary: mat-palette($mat-blue,800);
-$interfaces-proyecto-accent: mat-palette($mat-pink, A200, A100, A400);
+$interfaces-proyecto-light-cyan-primary: mat-palette($mat-cyan, 900);
+$interfaces-proyecto-light-cyan-accent: mat-palette($mat-cyan, 600);
+$interfaces-proyecto-light-cyan-warn: mat-palette($mat-cyan, 300);
 
-// The warn palette is optional (defaults to red).
-$interfaces-proyecto-warn: mat-palette($mat-teal, A400);
+$interfaces-proyecto-dark-cyan-primary: mat-palette($mat-cyan, A900);
+$interfaces-proyecto-dark-cyan-accent: mat-palette($mat-cyan, A700);
+$interfaces-proyecto-dark-cyan-warn: mat-palette($mat-cyan, A400);
+
+$interfaces-proyecto-light-blue-primary: mat-palette($mat-light-blue, 900);
+$interfaces-proyecto-light-blue-accent: mat-palette($mat-light-blue, 600);
+$interfaces-proyecto-light-blue-warn: mat-palette($mat-light-blue, 300);
+
+$interfaces-proyecto-dark-blue-primary: mat-palette($mat-light-blue, A900);
+$interfaces-proyecto-dark-blue-accent: mat-palette($mat-light-blue, A700);
+$interfaces-proyecto-dark-blue-warn: mat-palette($mat-light-blue, A400);
+
+$interfaces-proyecto-light-purple-primary: mat-palette($mat-purple, 900);
+$interfaces-proyecto-light-purple-accent: mat-palette($mat-purple, 600);
+$interfaces-proyecto-light-purple-warn: mat-palette($mat-purple, 300);
+
+$interfaces-proyecto-dark-purple-primary: mat-palette($mat-purple, A900);
+$interfaces-proyecto-dark-purple-accent: mat-palette($mat-purple, A700);
+$interfaces-proyecto-dark-purple-warn: mat-palette($mat-purple, A400);
+
+$interfaces-proyecto-light-pink-primary: mat-palette($mat-pink, 900);
+$interfaces-proyecto-light-pink-accent: mat-palette($mat-pink, 600);
+$interfaces-proyecto-light-pink-warn: mat-palette($mat-pink, 300);
+
+$interfaces-proyecto-dark-pink-primary: mat-palette($mat-pink, A900);
+$interfaces-proyecto-dark-pink-accent: mat-palette($mat-pink, A400);
+$interfaces-proyecto-dark-pink-warn: mat-palette($mat-pink, A200);
+
+$interfaces-proyecto-light-orange-primary: mat-palette($mat-orange, 900);
+$interfaces-proyecto-light-orange-accent: mat-palette($mat-orange, 600);
+$interfaces-proyecto-light-orange-warn: mat-palette($mat-orange, 300);
+
+$interfaces-proyecto-dark-orange-primary: mat-palette($mat-amber, A900);
+$interfaces-proyecto-dark-orange-accent: mat-palette($mat-amber, A700);
+$interfaces-proyecto-dark-orange-warn: mat-palette($mat-amber, A400);
+
+$interfaces-proyecto-light-teal-primary: mat-palette($mat-teal, 900);
+$interfaces-proyecto-light-teal-accent: mat-palette($mat-teal, 600);
+$interfaces-proyecto-light-teal-warn: mat-palette($mat-teal, 300);
+
+$interfaces-proyecto-dark-teal-primary: mat-palette($mat-teal, A900);
+$interfaces-proyecto-dark-teal-accent: mat-palette($mat-teal, A700);
+$interfaces-proyecto-dark-teal-warn: mat-palette($mat-teal, A400);
+
+$interfaces-proyecto-light-green-primary: mat-palette($mat-light-green, 900);
+$interfaces-proyecto-light-green-accent: mat-palette($mat-light-green, 600);
+$interfaces-proyecto-light-green-warn: mat-palette($mat-light-green, 300);
+
+$interfaces-proyecto-dark-green-primary: mat-palette($mat-light-green, A900);
+$interfaces-proyecto-dark-green-accent: mat-palette($mat-light-green, 500);
+$interfaces-proyecto-dark-green-warn: mat-palette($mat-light-green, 300);
+
+$interfaces-proyecto-light-gray-primary: mat-palette($mat-gray, 900);
+$interfaces-proyecto-light-gray-accent: mat-palette($mat-gray, 600);
+$interfaces-proyecto-light-gray-warn: mat-palette($mat-gray, 300);
+
+$interfaces-proyecto-dark-gray-primary: mat-palette($mat-gray, A900);
+$interfaces-proyecto-dark-gray-accent: mat-palette($mat-gray, 500);
+$interfaces-proyecto-dark-gray-warn: mat-palette($mat-gray, 400);
+
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography"
-$interfaces-proyecto-theme: mat-light-theme((
+$interfaces-proyecto-light-cyan-theme: mat-light-theme((
   color: (
-    primary: $interfaces-proyecto-primary,
-    accent: $interfaces-proyecto-accent,
-    warn: $interfaces-proyecto-warn,
+    primary: $interfaces-proyecto-light-cyan-primary,
+    accent: $interfaces-proyecto-light-cyan-accent,
+    warn: $interfaces-proyecto-light-cyan-warn
+  )
+));
+
+$interfaces-proyecto-dark-cyan-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-cyan-primary,
+    accent: $interfaces-proyecto-dark-cyan-accent,
+    warn: $interfaces-proyecto-dark-cyan-warn
+  )
+));
+
+$interfaces-proyecto-light-blue-theme: mat-light-theme((
+  color: (
+    primary: $interfaces-proyecto-light-blue-primary,
+    accent: $interfaces-proyecto-light-blue-accent,
+    warn: $interfaces-proyecto-light-blue-warn
+  )
+));
+
+$interfaces-proyecto-dark-blue-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-blue-primary,
+    accent: $interfaces-proyecto-dark-blue-accent,
+    warn: $interfaces-proyecto-dark-blue-warn
+  )
+));
+
+$interfaces-proyecto-light-purple-theme: mat-light-theme((
+  color: (
+    primary: $interfaces-proyecto-light-purple-primary,
+    accent: $interfaces-proyecto-light-purple-accent,
+    warn: $interfaces-proyecto-light-purple-warn
+  )
+));
+
+$interfaces-proyecto-dark-purple-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-purple-primary,
+    accent: $interfaces-proyecto-dark-purple-accent,
+    warn: $interfaces-proyecto-dark-purple-warn
+  )
+));
+
+$interfaces-proyecto-light-pink-theme: mat-light-theme((
+  color: (
+    primary: $interfaces-proyecto-light-pink-primary,
+    accent: $interfaces-proyecto-light-pink-accent,
+    warn: $interfaces-proyecto-light-pink-warn
+  )
+));
+
+$interfaces-proyecto-dark-pink-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-pink-primary,
+    accent: $interfaces-proyecto-dark-pink-accent,
+    warn: $interfaces-proyecto-dark-pink-warn
+  )
+));
+
+$interfaces-proyecto-light-orange-theme: mat-light-theme((
+  color: (
+    primary: $interfaces-proyecto-light-orange-primary,
+    accent: $interfaces-proyecto-light-orange-accent,
+    warn: $interfaces-proyecto-light-orange-warn
+  )
+));
+
+$interfaces-proyecto-dark-orange-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-orange-primary,
+    accent: $interfaces-proyecto-dark-orange-accent,
+    warn: $interfaces-proyecto-dark-orange-warn
+  )
+));
+
+$interfaces-proyecto-light-teal-theme: mat-light-theme((
+  color: (
+    primary: $interfaces-proyecto-light-teal-primary,
+    accent: $interfaces-proyecto-light-teal-accent,
+    warn: $interfaces-proyecto-light-teal-warn
+  )
+));
+
+$interfaces-proyecto-dark-teal-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-teal-primary,
+    accent: $interfaces-proyecto-dark-teal-accent,
+    warn: $interfaces-proyecto-dark-teal-warn
+  )
+));
+
+$interfaces-proyecto-light-green-theme: mat-light-theme((
+  color: (
+    primary: $interfaces-proyecto-light-green-primary,
+    accent: $interfaces-proyecto-light-green-accent,
+    warn: $interfaces-proyecto-light-green-warn
+  )
+));
+
+$interfaces-proyecto-dark-green-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-green-primary,
+    accent: $interfaces-proyecto-dark-green-accent,
+    warn: $interfaces-proyecto-dark-green-warn
+  )
+));
+
+$interfaces-proyecto-light-gray-theme: mat-light-theme((
+  color: (
+    primary: $interfaces-proyecto-light-gray-primary,
+    accent: $interfaces-proyecto-light-gray-accent,
+    warn: $interfaces-proyecto-light-gray-warn
+  )
+));
+
+$interfaces-proyecto-dark-gray-theme: mat-dark-theme((
+  color: (
+    primary: $interfaces-proyecto-dark-gray-primary,
+    accent: $interfaces-proyecto-dark-gray-accent,
+    warn: $interfaces-proyecto-dark-gray-warn
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($interfaces-proyecto-theme);
+@include angular-material-theme($interfaces-proyecto-light-cyan-theme);
 
+.light-cyan-theme {
+  @include angular-material-theme($interfaces-proyecto-light-cyan-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-cyan-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-cyan-theme);
+  background: #252525;
+  color: #fff;
+}
+
+.light-blue-theme {
+  @include angular-material-theme($interfaces-proyecto-light-blue-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-blue-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-blue-theme);
+  background: #252525;
+  color: #fff;
+}
+
+.light-purple-theme {
+  @include angular-material-theme($interfaces-proyecto-light-purple-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-purple-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-purple-theme);
+  background: #252525;
+  color: #fff;
+}
+
+.light-pink-theme {
+  @include angular-material-theme($interfaces-proyecto-light-pink-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-pink-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-pink-theme);
+  background: #252525;
+  color: #fff;
+}
+
+.light-orange-theme {
+  @include angular-material-theme($interfaces-proyecto-light-orange-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-orange-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-orange-theme);
+  background: #252525;
+  color: #fff;
+}
+
+.light-teal-theme {
+  @include angular-material-theme($interfaces-proyecto-light-teal-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-teal-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-teal-theme);
+  background: #252525;
+  color: #fff;
+}
+
+.light-green-theme {
+  @include angular-material-theme($interfaces-proyecto-light-green-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-green-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-green-theme);
+  background: #252525;
+  color: #fff;
+}
+
+.light-gray-theme {
+  @include angular-material-theme($interfaces-proyecto-light-gray-theme);
+  background: #fff;
+  color: #222;
+}
+
+.dark-gray-theme {
+  @include angular-material-theme($interfaces-proyecto-dark-gray-theme);
+  background: #252525;
+  color: #fff;
+}

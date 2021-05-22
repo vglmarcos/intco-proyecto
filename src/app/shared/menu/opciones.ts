@@ -1,54 +1,61 @@
-import { IOpcion } from './IOpcion';
+import { IOption } from './IOption';
 
-export const opciones: IOpcion[] = [
+export const opciones: IOption[] = [
     {
         image: 'assets/img/cotizacion.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Cotizacion'
+        tooltip: 'Cotizacion',
+        color: 'color1',
     },
     {
         image: 'assets/img/ventas.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Ventas'
+        tooltip: 'Ventas',
+        color: 'color2',
     },
     {
         image: 'assets/img/facturas.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Facturas'
+        tooltip: 'Facturas',
+        color: 'color3',
     },
     {
         image: 'assets/img/producto.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Producto'
+        tooltip: 'Producto',
+        color: 'color4',
     },
     {
         image: 'assets/img/proveedores.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Porveedores'
+        tooltip: 'Porveedores',
+        color: 'color5',
     },
     {
         image: 'assets/img/almacen.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Almacen'
+        tooltip: 'Almacen',
+        color: 'color6',
     },
     {
         image: 'assets/img/usuarios.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Usuarios'
+        tooltip: 'Usuarios',
+        color: 'color7',
     },
     {
         image: 'assets/img/clientes.png',
@@ -56,12 +63,14 @@ export const opciones: IOpcion[] = [
         image_width: '50px',
         image_heigth: '50px',
         tooltip: 'Clientes',
+        color: 'color8',
     },
     {
         image: 'assets/img/reportes.png',
         route: '/buscar-cotizacion',
         image_width: '50px',
         image_heigth: '50px',
-        tooltip: 'Reportes'
+        tooltip: 'Reportes',
+        color: 'color9',
     }
 ]

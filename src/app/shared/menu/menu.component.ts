@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IOpcion } from './IOpcion';
+import { IOption } from './IOption';
 import { opciones } from './opciones';
-import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-menu',
@@ -9,8 +8,17 @@ import { TooltipPosition } from '@angular/material/tooltip';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  public OPCIONES: IOpcion[] = opciones;
+  color = 'primary';
+  color2 = 'primary';
+  color3 = 'primary';
+  color4 = 'primary';
+  color5 = 'primary';
+  color6 = 'primary';
+  color7 = 'primary';
+  color8 = 'primary';
+  color9 = 'primary';
+  
+  public OPCIONES: IOption[] = opciones;
 
   constructor() { }
 

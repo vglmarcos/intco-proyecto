@@ -9,7 +9,7 @@
 .btn-opt {
     width: 100%;
     height: 100%;
-}
+} 
 
 .img-opt {
     width: 100%;
@@ -24,10 +24,10 @@
     border-radius: 0px;   
 }
 
-.mat-button, .mat-raised-button{
+/* .mat-button, .mat-raised-button{
     background-color: var(--primary-color);
-} 
+}  */
 
-.mat-button:hover, .mat-raised-button:hover{
-    background-color: var(--secondary-color);
-}
+/* .mat-button:hover, .mat-raised-button:hover{
+    background-color: #00B8D4;
+} */

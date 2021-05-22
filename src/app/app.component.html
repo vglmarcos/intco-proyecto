@@ -1,12 +1,14 @@
-<div class="container-login" *ngIf="this.router.url === '/ingresar'; else elseBlock">
-    <app-login></app-login>
-</div>
-<ng-template #elseBlock>
-    <div class="container-app">
-        <app-menu></app-menu>
-        <app-header [title]="title"></app-header>
-        <div class="container-main">
-            <router-outlet></router-outlet>
-        </div>
+<div [ngClass]='["main-app", theme]'>
+    <div class="container-login" *ngIf="this.router.url === '/ingresar'; else elseBlock">
+        <app-login></app-login>
     </div>
-</ng-template>
+    <ng-template #elseBlock>
+        <div class="container-app">
+            <app-menu></app-menu>
+            <app-header [title]="title"></app-header>
+            <div class="main-container">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -1,17 +1,45 @@
-<div class="header-container">
-    <div class="header-title">
-        <h1>{{title}}</h1>
-    </div>
-    <div class="header-profile">
-        <button mat-stroked-button [matMenuTriggerFor]="menuProfile">  
-            <div class="button-content">
-                <img src="assets/img/perfil.png" alt="Perfil">
+    <mat-toolbar  class="header-container"> 
+        <div class="header-title">
+            <h1>{{title}}</h1>
+        </div>
+        <!-- <div class="header-profile">
+            <button mat-stroked-button [color]="color" (mouseover)="color = 'accent'" (mouseout)="color ='primary'">
+                <mat-icon>account_circle</mat-icon>
                 <h1>Perfil</h1>
-            </div>
-        </button>
-        <mat-menu #menuProfile="matMenu">
-            <button mat-menu-item>Hola</button>
-            <buton mat-menu-item>Hola</buton>
-        </mat-menu>
-    </div>
-</div>
+            </button>
+        </div> -->
+        <div class="header-profile">
+            <button mat-stroked-button [matMenuTriggerFor] = "menuProfile" color="accent">  
+                <div class="button-content">
+                    <mat-icon>account_circle</mat-icon>
+                    <h1>Perfil</h1>
+                </div>
+            </button>
+            <mat-menu [class]='actualTheme' #menuProfile="matMenu" xPosition="before">
+                <ng-template matMenuContent>
+                    <button mat-menu-item [matMenuTriggerFor]="menuTheme">
+                        <mat-icon color="accent">color_lens</mat-icon>
+                        Cambiar Tema
+                    </button>
+                    <button mat-menu-item (click)="changeMode()">
+                        <mat-icon color="accent">invert_colors</mat-icon>
+                        Cambiar Modo
+                    </button>
+                    <buton mat-button mat-menu-item (click)="logout()">
+                        <mat-icon style="color: #F44336;">exit_to_appt</mat-icon>
+                        Logout
+                    </buton>
+                </ng-template>
+            </mat-menu>
+            <mat-menu [class]='actualTheme' #menuTheme="matMenu">
+                <button mat-menu-item (click)="onChangeColor('cyan')">Cian</button>
+                <button mat-menu-item (click)="onChangeColor('blue')">Azul</button>
+                <button mat-menu-item (click)="onChangeColor('purple')">Morado</button>
+                <button mat-menu-item (click)="onChangeColor('pink')">Rosa</button>
+                <button mat-menu-item (click)="onChangeColor('orange')">Naranja</button>
+                <button mat-menu-item (click)="onChangeColor('teal')">Turquesa</button>
+                <button mat-menu-item (click)="onChangeColor('green')">Verde</button>
+                <button mat-menu-item (click)="onChangeColor('gray')">Gris</button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>

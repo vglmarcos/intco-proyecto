@@ -1,5 +1,34 @@
 <div class="container-menu">
-    <button class="btn-opt" *ngFor="let opcion of OPCIONES" mat-raised-button color="primary" [matTooltip]='opcion.tooltip' matTooltipPosition="after">
+    <!-- <button class="btn-opt" *ngFor="let opcion of OPCIONES; let i = index" mat-raised-button color="primary" [matTooltip]='opcion.tooltip' matTooltipPosition="after" [color]='opcion.color' [(mouseover)] ="opcion.color = 'accent'" [(mouseout)] ="opcion.color = 'primary'">
         <img class="img-opt" [src]="opcion.image" alt="">
+    </button> -->
+
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Cotización' matTooltipPosition="after" [color]="color" (mouseover) ="color = 'accent'" (mouseout) ="color = 'primary'">
+        <img class="img-opt" src="assets/img/cotizacion.png" alt="">
     </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Ventas' matTooltipPosition="after" [color]="color2" (mouseover) ="color2 = 'accent'" (mouseout) ="color2 = 'primary'">
+        <img class="img-opt" src="assets/img/ventas.png" alt="">
+    </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Facturas' matTooltipPosition="after" [color]="color3" (mouseover) ="color3 = 'accent'" (mouseout) ="color3 = 'primary'">
+        <img class="img-opt" src="assets/img/facturas.png" alt="">
+    </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Producto' matTooltipPosition="after" [color]="color4" (mouseover) ="color4 = 'accent'" (mouseout) ="color4 = 'primary'">
+        <img class="img-opt" src="assets/img/producto.png" alt="">
+    </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Proveedorres' matTooltipPosition="after" [color]="color5" (mouseover) ="color5 = 'accent'" (mouseout) ="color5 = 'primary'">
+        <img class="img-opt" src="assets/img/proveedores.png" alt="">
+    </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Almacen' matTooltipPosition="after" [color]="color6" (mouseover) ="color6 = 'accent'" (mouseout) ="color6 = 'primary'">
+        <img class="img-opt" src="assets/img/almacen.png" alt="">
+    </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Usuarios' matTooltipPosition="after" [color]="color7" (mouseover) ="color7 = 'accent'" (mouseout) ="color7 = 'primary'">
+        <img class="img-opt" src="assets/img/usuarios.png" alt="">
+    </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Clientes' matTooltipPosition="after" [color]="color8" (mouseover) ="color8 = 'accent'" (mouseout) ="color8 = 'primary'">
+        <img class="img-opt" src="assets/img/clientes.png" alt="">
+    </button>
+    <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Reportes' matTooltipPosition="after" [color]="color9" (mouseover) ="color9 = 'accent'" (mouseout) ="color9 = 'primary'">
+        <img class="img-opt" src="assets/img/reportes.png" alt="">
+    </button>
+
 </div>

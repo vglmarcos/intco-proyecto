@@ -1,22 +1,29 @@
-<div class="login-page">
+<div class="login-page" [class]='backColorMode'>
+<!-- <div class="login-page" [class]='backColorMode' *ngIf="backColorMode === 'light'; then lightmode; else darkmode">  -->
     <div class="login-card">
-        <div class="card-image">
-            <p>El logo va aquí</p>
+        <div class="card-image"[class]='themeOption' >
+            <img class="logo" src="assets/img/logo.png" alt="">
         </div>
-        <div class="card-form">
+        <div class="card-form"[class]='cardColorMode' >
             <form class="example-form">
                 <div class="title-form">
                     <h1>Bienvenido</h1>
                 </div>
-                <mat-form-field appearance="outline" class="example-full-width">
+                <mat-form-field appearance="outline" class="example-full-width" color="accent">
                     <mat-label>Usuario</mat-label>
                     <input autocomplete="off" matInput type="text">
                 </mat-form-field>
-                <mat-form-field appearance="outline" class="example-full-width">
+                <mat-form-field appearance="outline" class="example-full-width" color="accent">
                     <mat-label>Contraseña</mat-label>
                     <input autocomplete="off" matInput type="password">
                 </mat-form-field>
-                <button mat-raised-button color="primary" (click)="onSubmit()">Ingresar</button>
+                <button mat-raised-button [class]="buttonColorMode" (click)="onSubmit()">Ingresar</button>
+                <!-- <ng-template #lightmode> 
+                    <button mat-raised-button color="primary" (click)="onSubmit()" [color]="color" (mouseover) =" color = 'accent'" (mouseout) =" color = 'primary'">Ingresar</button>
+                </ng-template>
+                <ng-template #darkmode>
+                    <button mat-raised-button color="accent" (click)="onSubmit()" [color]="color" (mouseover) =" color = 'warn'" (mouseout) =" color = 'accent'">Ingresar</button>
+                </ng-template> -->
             </form>
         </div>
     </div>

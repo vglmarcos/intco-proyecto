@@ -17,7 +17,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatMenuModule } from '@angular/material/menu'
+import { MatMenuModule } from '@angular/material/menu';
+import { ColorThemeService } from 'src/app/services/color-theme.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,10 @@ import { MatMenuModule } from '@angular/material/menu'
     MatSortModule,
     MatIconModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    MatToolbarModule
   ],
-  providers: [],
+  providers: [ColorThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
