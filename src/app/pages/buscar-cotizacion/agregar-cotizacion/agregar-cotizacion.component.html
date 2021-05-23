@@ -9,7 +9,7 @@
                 </mat-form-field>
                 <div>
                     <p>Go to a different step to see the error state</p>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button color="primary" matStepperNext>Next</button>
                 </div>
             </form>
         </mat-step>
@@ -18,12 +18,12 @@
                 <ng-template matStepLabel>Fill out your address</ng-template>
                 <mat-form-field>
                     <mat-label>Address</mat-label>
-                    <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl" required>
+                    <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl" required autocomplete="off">
                 </mat-form-field>
                 <div>
                     <p>Go to a different step to see the error state</p>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button color="warn" matStepperPrevious>Back</button>
+                    <button mat-button color="primary" matStepperNext>Next</button>
                 </div>
             </form>
         </mat-step>
@@ -31,8 +31,8 @@
             <ng-template matStepLabel>Done</ng-template>
             <p>You are now done.</p>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-button color="warn" matStepperPrevious>Back</button>
+                <button mat-button color="primary" (click)="stepper.reset()">Reset</button>
             </div>
         </mat-step>
     </mat-horizontal-stepper>

@@ -9,21 +9,17 @@
                 <div class="title-form">
                     <h1>Bienvenido</h1>
                 </div>
-                <mat-form-field appearance="outline" class="example-full-width" color="accent">
+                <mat-form-field appearance="outline" class="example-full-width" color="primary">
                     <mat-label>Usuario</mat-label>
-                    <input autocomplete="off" matInput type="text">
+                    <input [(ngModel)]="user" autocomplete="off" matInput type="text" [formControl]="userCtrl" required>
+                    <mat-error>{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline" class="example-full-width" color="accent">
+                <mat-form-field appearance="outline" class="example-full-width" color="primary">
                     <mat-label>Contraseña</mat-label>
-                    <input autocomplete="off" matInput type="password">
+                    <input [(ngModel)]="password" autocomplete="off" matInput type="password" [formControl]="passCtrl" required>
+                    <mat-error>{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
-                <button mat-raised-button [class]="buttonColorMode" (click)="onSubmit()">Ingresar</button>
-                <!-- <ng-template #lightmode> 
-                    <button mat-raised-button color="primary" (click)="onSubmit()" [color]="color" (mouseover) =" color = 'accent'" (mouseout) =" color = 'primary'">Ingresar</button>
-                </ng-template>
-                <ng-template #darkmode>
-                    <button mat-raised-button color="accent" (click)="onSubmit()" [color]="color" (mouseover) =" color = 'warn'" (mouseout) =" color = 'accent'">Ingresar</button>
-                </ng-template> -->
+                <button mat-raised-button [class]="buttonColorMode" (click)="onSubmit()" >Ingresar</button>
             </form>
         </div>
     </div>

@@ -1,13 +1,13 @@
 <div class="main-container">
     <div class="seeker-add">
-        <mat-form-field appearance="outline" class="mat-form-field-width" color="accent">
+        <mat-form-field appearance="outline" class="mat-form-field-width" color="primary">
             <mat-label>Buscar</mat-label>
-            <input matInput (keyup)="applyFilter($event)" #input>
+            <input autocomplete="off" matInput (keyup)="applyFilter($event)" #input>
             <span matSuffix>
-                <mat-icon color="accent" class="search-icon" matPrefix>search</mat-icon>
+                <mat-icon color="primary" class="search-icon" matPrefix>search</mat-icon>
             </span>
         </mat-form-field>
-        <button (click)="agregarCotizacion()" [class]='colorMode' class="add-btn" mat-fab matTooltip="Crear Cotización" [color] = "color" (mouseover) =" color = 'warn'" (mouseout) =" color = 'accent'">
+        <button (click)="agregarCotizacion()" [class]='colorMode' class="add-btn" mat-fab matTooltip="Crear Cotización" [color] = "color" (mouseover) =" color = 'accent'" (mouseout) =" color = 'primary'">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -44,10 +44,10 @@
                 <td mat-cell *matCellDef="let row">
                     <div class="actions-container">
                         <button class="table-btn" mat-icon-button mat-button aria-label="Example icon button with a heart icon" matTooltip="Editar Cotización" >
-                            <mat-icon class="edit-button" color="accent" >edit</mat-icon>
+                            <mat-icon class="edit-button" color="primary" >edit</mat-icon>
                         </button>
                         <button class="table-btn" mat-icon-button mat-button aria-l0000abel="Example icon button with a heart icon"  matTooltip="Eliminar Cotización" (click)="onDelete(row)">
-                            <mat-icon style="color: #F44336;">delete</mat-icon>
+                            <mat-icon color="warn">delete</mat-icon>
                         </button>
                     </div>
                  </td>

@@ -22,6 +22,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AgregarCotizacionComponent } from './pages/buscar-cotizacion/agregar-cotizacion/agregar-cotizacion.component';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
+import { UsuarioService } from 'src/app/api/usuario/usuario.service';
+import { ClienteService } from 'src/app/api/cliente/cliente.service';
+import { CotizacionService } from 'src/app/api/cotizacion/cotizacion.service';
+import { LaminaService } from 'src/app/api/lamina/lamina.service';
+import { ProductoService } from 'src/app/api/producto/producto.service';
+import { ProveedorService } from 'src/app/api/proveedor/proveedor.service';
+import { ReporteService } from 'src/app/api/reporte/reporte.service';
+import { VentaService } from 'src/app/api/venta/venta.service';
+import { LoginService } from 'src/app/api/login/login.service';
 
 @NgModule({
   declarations: [
@@ -48,9 +59,22 @@ import { AgregarCotizacionComponent } from './pages/buscar-cotizacion/agregar-co
     MatMenuModule,
     MatToolbarModule,
     MatDialogModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSnackBarModule,
+    HttpClientModule
   ],
-  providers: [ColorThemeService],
+  providers: [
+    ColorThemeService,
+    UsuarioService,
+    ClienteService,
+    CotizacionService,
+    LaminaService,
+    ProductoService,
+    ProveedorService,
+    ReporteService,
+    VentaService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

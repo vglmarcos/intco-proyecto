@@ -97,14 +97,35 @@ h1 {
     font-size: 20px;
 }
 
+
+::ng-deep .snackBarGreen {
+    background-color: 
+    #1DD581 !important;
+    color: #fff !important;
+    opacity: 0.9;
+}
+
+::ng-deep .snackBarRed {
+    background-color: #E53935 !important;
+    color: #fff !important;
+    opacity: 0.9;
+}
+
 .light-cyan-theme,
 .light-cyan-button {
     background-color: #006064 !important;
+    background: #006064;
     color: #fff !important;
 }
 
 .light-cyan-button:hover{
     background-color: #00ACC1 !important;
+}
+
+::ng-deep .light-cyan-snack{
+    background-color: #00ACC1 !important;
+    color: #fff !important;
+    opacity: 0.9 !important;
 }
 
 .dark-cyan-theme,
@@ -114,6 +135,12 @@ h1 {
 
 .dark-cyan-button:hover{
     background-color: #00E5FF !important;
+}
+
+::ng-deep .dark-cyan-snack{
+    background-color: #00B8D4 !important;
+    color: #fff !important;
+    opacity: 0.9 !important;
 }
 
 .light-blue-theme,
@@ -126,6 +153,12 @@ h1 {
     background-color: #039BE5 !important;
 }
 
+::ng-deep .light-blue-snack{
+    background-color: #039BE5 !important;
+    color: #fff !important;
+    opacity: 0.9 !important;
+}
+
 .dark-blue-theme,
 .dark-blue-button{
     background-color: #0091EA !important;
@@ -133,6 +166,12 @@ h1 {
 
 .dark-blue-button:hover{
     background-color: #00B0FF !important;
+}
+
+::ng-deep .dark-blue-snack {
+    background-color: #0091EA !important;
+    color: #fff !important;
+    opacity: 0.9 !important;
 }
 
 .light-purple-theme,

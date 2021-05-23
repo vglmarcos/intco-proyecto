@@ -20,7 +20,7 @@ export class AgregarCotizacionComponent implements OnInit {
 
 
     public actualTheme: string;
-    public color = 'accent';
+    public color = 'primary';
 
     constructor(
         public dialogRef: MatDialogRef<AgregarCotizacionComponent>,

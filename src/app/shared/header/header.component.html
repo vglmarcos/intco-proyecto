@@ -9,7 +9,7 @@
             </button>
         </div> -->
         <div class="header-profile">
-            <button mat-stroked-button [matMenuTriggerFor] = "menuProfile" color="accent">  
+            <button mat-stroked-button [matMenuTriggerFor] = "menuProfile" color="primary">  
                 <div class="button-content">
                     <mat-icon>account_circle</mat-icon>
                     <h1>Perfil</h1>
@@ -18,15 +18,15 @@
             <mat-menu [class]='actualTheme' #menuProfile="matMenu" xPosition="before">
                 <ng-template matMenuContent>
                     <button mat-menu-item [matMenuTriggerFor]="menuTheme">
-                        <mat-icon color="accent">color_lens</mat-icon>
+                        <mat-icon color="primary">color_lens</mat-icon>
                         Cambiar Tema
                     </button>
                     <button mat-menu-item (click)="changeMode()">
-                        <mat-icon color="accent">invert_colors</mat-icon>
+                        <mat-icon color="primary">invert_colors</mat-icon>
                         Cambiar Modo
                     </button>
                     <buton mat-button mat-menu-item (click)="logout()">
-                        <mat-icon style="color: #F44336;">exit_to_appt</mat-icon>
+                        <mat-icon color="warn">exit_to_appt</mat-icon>
                         Logout
                     </buton>
                 </ng-template>

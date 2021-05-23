@@ -33,7 +33,7 @@ const NAMES: string[] = [
   ]
 })
 export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
-  color = 'accent';
+  color = 'primary';
   public actualTheme: string;
   dark = 'dark';
   light = 'light';

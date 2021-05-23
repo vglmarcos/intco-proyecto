@@ -1,8 +1,8 @@
 <div class="container-menu">
-    <!-- <button class="btn-opt" *ngFor="let opcion of OPCIONES; let i = index" mat-raised-button color="primary" [matTooltip]='opcion.tooltip' matTooltipPosition="after" [color]='opcion.color' [(mouseover)] ="opcion.color = 'accent'" [(mouseout)] ="opcion.color = 'primary'">
+    <button mat-raised-button class="btn-opt" [class]="buttonColorMode" *ngFor="let opcion of OPCIONES; let i = index" [matTooltip]='opcion.tooltip' matTooltipPosition="after">
         <img class="img-opt" [src]="opcion.image" alt="">
-    </button> -->
-
+    </button>
+<!-- 
     <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Cotización' matTooltipPosition="after" [color]="color" (mouseover) ="color = 'accent'" (mouseout) ="color = 'primary'">
         <img class="img-opt" src="assets/img/cotizacion.png" alt="">
     </button>
@@ -29,6 +29,6 @@
     </button>
     <button class="btn-opt" mat-raised-button color="primary" matTooltip = 'Reportes' matTooltipPosition="after" [color]="color9" (mouseover) ="color9 = 'accent'" (mouseout) ="color9 = 'primary'">
         <img class="img-opt" src="assets/img/reportes.png" alt="">
-    </button>
+    </button> -->
 
 </div>
