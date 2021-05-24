@@ -7,7 +7,7 @@ import { IFactura } from 'src/app/models/IFactura';
 })
 export class FacturaService {
 
-  private basePath = "http://localhost:3000";
+  private basePath = "https://api-rest-vitrum.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 

@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MatInputModule} from '@angular/material/input';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AgregarCotizacionComponent } from './pages/buscar-cotizacion/agregar-cotizacion/agregar-cotizacion.component';
-import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from 'src/app/api/usuario/usuario.service';
 import { ClienteService } from 'src/app/api/cliente/cliente.service';
@@ -33,6 +33,8 @@ import { ProveedorService } from 'src/app/api/proveedor/proveedor.service';
 import { ReporteService } from 'src/app/api/reporte/reporte.service';
 import { VentaService } from 'src/app/api/venta/venta.service';
 import { LoginService } from 'src/app/api/login/login.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { LoginService } from 'src/app/api/login/login.service';
     MatDialogModule,
     MatStepperModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule,
+    MatAutocompleteModule
   ],
   providers: [
     ColorThemeService,

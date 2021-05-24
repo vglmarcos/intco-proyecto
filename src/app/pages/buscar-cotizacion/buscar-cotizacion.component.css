@@ -48,18 +48,6 @@ mat-label, input {
     width: 100%;
 }
 
-.mat-paginator-sticky {
-    bottom: 0px;
-    position: sticky;
-    z-index: 10;
-    border-top: 1px solid #e0e0e0;
-}
-
-.table-container {
-    height: 270px;
-    overflow: auto;
-}
-
 .actions-container {
     display: flex;
     flex-direction: row;
@@ -71,6 +59,38 @@ mat-label, input {
 
 .light mat-icon {
     color: #fff !important;
+}
+
+.center-col {
+    text-align: center;
+}
+
+.mat-column-id {
+    width: 10% !important;
+}
+
+.mat-column-nombre {
+    width: 30% !important;
+}
+
+.mat-column-fecha {
+    width: 15% !important;
+}
+
+.mat-column-estado {
+    width: 15% !important;
+}
+
+.mat-column-total {
+    width: 10% !important;
+}
+
+.mat-column-editar {
+    width: 5% !important;
+}
+
+.mat-column-eliminar {
+    width: 5% !important;
 }
 
 /* .add-btn:hover{

@@ -90,7 +90,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.user);
     if (this.loginService.iniciarSesion(this.user, this.password)) {
       this.router.navigate(['/buscar-cotizacion']);
       console.log('ok');

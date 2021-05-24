@@ -7,7 +7,7 @@ import { IUsuario } from 'src/app/models/IUsuario';
 })
 export class UsuarioService {
 
-  private basePath = "http://localhost:3000";
+  private basePath = "https://api-rest-vitrum.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 

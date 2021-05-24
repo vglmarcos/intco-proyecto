@@ -23,3 +23,8 @@ router-outlet {
     padding: 0px !important;
     border-radius: 0 !important;
 }
+
+.mat-stepper-horizontal {
+    height: 100%;
+    /*background-color: var(--form-color) !important;*/
+}

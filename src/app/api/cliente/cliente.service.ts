@@ -7,7 +7,7 @@ import { ICliente } from 'src/app/models/ICliente';
 })
 export class ClienteService {
 
-  private basePath = "http://localhost:3000";
+  private basePath = "https://api-rest-vitrum.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 

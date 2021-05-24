@@ -16,9 +16,10 @@ export class LoginService {
   }
 
   iniciarSesion(usuario: string, password: string) {
-    console.log(this.USUARIOS);
-    const existeUsuario = this.USUARIOS.find(user => (user.usuario == usuario && user.contra == password));
-    if(existeUsuario) return true;
+    if(this.USUARIOS) {
+      const existeUsuario = this.USUARIOS.find(user => (user.usuario == usuario && user.contra == password));
+      if(existeUsuario) return true;
+    }
     return false;
   }
 }

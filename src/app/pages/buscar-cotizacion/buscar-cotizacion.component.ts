@@ -6,23 +6,8 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AgregarCotizacionComponent } from './agregar-cotizacion/agregar-cotizacion.component';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
+import { ICotizacion } from 'src/app/models/ICotizacion';
+import { CotizacionService } from 'src/app/api/cotizacion/cotizacion.service';
 
 @Component({
   selector: 'app-buscar-cotizacion',
@@ -38,26 +23,36 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
   dark = 'dark';
   light = 'light';
   public colorMode: string;
+  private COTIZACIONES: ICotizacion[];
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color', 'acciones'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['id', 'nombre', 'fecha', 'estado', 'total', 'editar', 'eliminar'];
+  dataSource: MatTableDataSource<ICotizacion>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     public colorThemeService: ColorThemeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cotizacionService: CotizacionService
   ) {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.iniciarDatos();
 
+    
     this.colorThemeService.theme.subscribe((theme) => {
       this.actualTheme = theme;
       this.viewColor();
+    });
+  }
+
+  iniciarDatos() {
+    this.cotizacionService.obtenerCotizacionesGet().subscribe(cotizaciones => {
+      this.COTIZACIONES = cotizaciones;
+      this.dataSource = new MatTableDataSource(this.COTIZACIONES);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     });
   }
 
@@ -72,12 +67,11 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
+    
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    
   }
 
   applyFilter(event: Event) {
@@ -89,15 +83,15 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onDelete(row: any) {
-    console.log(row);
+  onDelete(cotizacion: ICotizacion) {
+    this.cotizacionService.eliminarClienteDelete(cotizacion).subscribe(res => {
+      this.iniciarDatos();
+    });
   }
 
   agregarCotizacion() {
     const dialogRef = this.dialog.open(AgregarCotizacionComponent, {
       data: 'datos',
-      width: "600px",
-      height: "400px",
       autoFocus: false 
     });
 
@@ -110,19 +104,6 @@ export class BuscarCotizacionComponent implements OnInit, AfterViewInit {
     });
   }
 
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
 }
 
 function CustomPaginator() {

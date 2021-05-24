@@ -1,39 +1,103 @@
 <div [ngClass]='[actualTheme, "main"]'>
-    <mat-horizontal-stepper #stepper>
-        <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-            <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill out your name</ng-template>
-                <mat-form-field>
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                </mat-form-field>
-                <div>
-                    <p>Go to a different step to see the error state</p>
-                    <button mat-button color="primary" matStepperNext>Next</button>
+    <mat-toolbar class="title-modal">
+        <h2>Crear Cotización</h2>
+    </mat-toolbar>
+    <div class="body-modal">
+        <mat-horizontal-stepper #stepper>
+            <mat-step [stepControl]="firstFormGroup" errorMessage="Se deben de llenar todos los datos.">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Datos del cliente</ng-template>
+                    <div class="content">
+                        <div class="form-group-client">
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Correo</mat-label>
+                                    <input matInput formControlName="secondCtrl" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Teléfono</mat-label>
+                                    <input matInput formControlName="thirdCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Lugar de instalación</mat-label>
+                                    <input matInput formControlName="fourCtrl" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="footer-stepper">
+                            <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+                            <button mat-button color="primary" matStepperNext>Siguiente</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+                <ng-template matStepLabel>Agregar productos al carrito</ng-template>
+                <mat-tab-group mat-align-tabs="center">
+                    <mat-tab label="Agregar Producto">
+                        <form class="mat-tab-content">
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" color="primary" class="select-prod">
+                                    <mat-label>Nombre</mat-label>
+                                    <input type="text" aria-label="Nombre" matInput [formControl]="myControl"
+                                        [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option [color]="color" (mouseover)=" color = 'accent'" (mouseout)=" color = 'primary'" [ngClass]='[actualTheme]' *ngFor="let producto of filteredOptions | async"
+                                            [value]="producto.nombre">
+                                            {{producto.nombre}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" color="primary" class="ancho-largo">
+                                    <mat-label>Ancho</mat-label>
+                                    <input autocomplete="off" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" color="primary" class="ancho-largo">
+                                    <mat-label>Largo</mat-label>
+                                    <input autocomplete="off" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" color="primary" class="form-input">
+                                    <mat-label disabled >Precio unitario</mat-label>
+                                    <input autocomplete="off" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" color="primary" class="form-input">
+                                    <mat-label>Cantidad</mat-label>
+                                    <input autocomplete="off" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" color="primary" class="form-input-full">
+                                    <mat-label>Total</mat-label>
+                                    <input autocomplete="off" matInput>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </mat-tab>
+                    <mat-tab label="Carrito">
+                        
+                    </mat-tab>
+                </mat-tab-group>
+                <div class="footer-stepper">
+                    <button mat-button color="warn" matStepperPrevious>Anterior</button>
+                    <button mat-button color="primary" matStepperNext>Siguiente</button>
                 </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-            <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Fill out your address</ng-template>
-                <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl" required autocomplete="off">
-                </mat-form-field>
-                <div>
-                    <p>Go to a different step to see the error state</p>
-                    <button mat-button color="warn" matStepperPrevious>Back</button>
-                    <button mat-button color="primary" matStepperNext>Next</button>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Finalizar cotizacion</ng-template>
+                <p>You are now done.</p>
+                <div class="footer-stepper">
+                    <button mat-button color="warn" matStepperPrevious>Anterior</button>
+                    <button mat-button color="primary" (click)="stepper.reset()">Guardar</button>
                 </div>
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div>
-                <button mat-button color="warn" matStepperPrevious>Back</button>
-                <button mat-button color="primary" (click)="stepper.reset()">Reset</button>
-            </div>
-        </mat-step>
-    </mat-horizontal-stepper>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
 </div>

@@ -7,7 +7,7 @@ import { IProducto } from 'src/app/models/IProducto';
 })
 export class ProductoService {
 
-  private basePath = "http://localhost:3000";
+  private basePath = "https://api-rest-vitrum.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 

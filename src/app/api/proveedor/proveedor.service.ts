@@ -7,7 +7,7 @@ import { IProveedor } from 'src/app/models/IProveedor';
 })
 export class ProveedorService {
 
-  private basePath = "http://localhost:3000";
+  private basePath = "https://api-rest-vitrum.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 
