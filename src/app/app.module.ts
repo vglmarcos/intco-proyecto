@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AgregarCotizacionComponent } from './pages/buscar-cotizacion/agregar-cotizacion/agregar-cotizacion.component';
+import { EditarCotizacionComponent } from './pages/buscar-cotizacion/editar-cotizacion/editar-cotizacion.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from 'src/app/api/usuario/usuario.service';
@@ -34,7 +35,9 @@ import { ReporteService } from 'src/app/api/reporte/reporte.service';
 import { VentaService } from 'src/app/api/venta/venta.service';
 import { LoginService } from 'src/app/api/login/login.service';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MenuComponent,
     BuscarCotizacionComponent,
     HeaderComponent,
-    AgregarCotizacionComponent
+    AgregarCotizacionComponent,
+    EditarCotizacionComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatSnackBarModule,
     HttpClientModule,
     MatTabsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule,
+    MatSlideToggleModule
   ],
   providers: [
     ColorThemeService,

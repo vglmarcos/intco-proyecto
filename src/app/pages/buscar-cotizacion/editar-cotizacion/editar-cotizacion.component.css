@@ -81,11 +81,6 @@ input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
     display: none;
 }
-
-input.remove-flechitas::-webkit-outer-spin-button,
-input.remove-flechitas::-webkit-inner-spin-button {
-    display: none;
-}
   
 input.example-right-align {
     -moz-appearance: textfield;

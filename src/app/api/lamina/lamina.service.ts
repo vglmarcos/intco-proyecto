@@ -7,7 +7,7 @@ import { ILamina } from 'src/app/models/ILamina';
 })
 export class LaminaService {
 
-  private basePath = "https://api-rest-vitrum.herokuapp.com";
+  private basePath = "http://localhost:3000";
 
   constructor(private httpClient: HttpClient) { }
 

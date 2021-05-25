@@ -28,3 +28,8 @@ router-outlet {
     height: 100%;
     /*background-color: var(--form-color) !important;*/
 }
+
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  place-self: center;
+}

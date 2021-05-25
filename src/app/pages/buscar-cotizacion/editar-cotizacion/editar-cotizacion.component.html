@@ -1,6 +1,6 @@
 <div [ngClass]='[actualTheme, "main"]'>
     <mat-toolbar class="title-modal">
-        <h2>Crear Cotización</h2>
+        <h2>Editar Cotización</h2>
     </mat-toolbar>
     <div class="body-modal">
         <mat-horizontal-stepper linear #stepper>
@@ -32,7 +32,7 @@
                             <div class="row-inputs">
                                 <mat-form-field appearance="outline" class="form-input">
                                     <mat-label>Teléfono</mat-label>
-                                    <input class="remove-flechitas" type="number" matInput formControlName="telCtrl" required>
+                                    <input maxLength="10" type="number" matInput formControlName="telCtrl" required>
                                     <mat-error
                                         *ngIf="firstFormGroup.controls['telCtrl'].hasError('minlength') && !firstFormGroup.controls['telCtrl'].hasError('required')">
                                         El número telefónico tiene que tener 10 números.
@@ -198,11 +198,11 @@
                     </mat-expansion-panel>
                 </mat-accordion>
                 <mat-slide-toggle class="margin-top" color="primary" [(ngModel)]="checked">
-                    Completar Venta
+                    Cotización aprobada
                 </mat-slide-toggle>
                 <div class="footer-stepper">
                     <button mat-button color="warn" matStepperPrevious>Anterior</button>
-                    <button mat-button color="primary" (click)="guardarCotizacion()">Guardar</button>
+                    <button mat-button color="primary" (click)="editarCotizacion()">Guardar</button>
                 </div>
             </mat-step>
         </mat-horizontal-stepper>

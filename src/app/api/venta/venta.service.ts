@@ -7,7 +7,7 @@ import { IVenta } from 'src/app/models/IVenta';
 })
 export class VentaService {
 
-  private basePath = "https://api-rest-vitrum.herokuapp.com";
+  private basePath = "http://localhost:3000";
 
   constructor(private httpClient: HttpClient) { }
 

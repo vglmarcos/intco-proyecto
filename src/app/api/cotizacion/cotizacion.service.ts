@@ -7,7 +7,7 @@ import { ICotizacion } from 'src/app/models/ICotizacion';
 })
 export class CotizacionService {
 
-  private basePath = "https://api-rest-vitrum.herokuapp.com";
+  private basePath = "http://localhost:3000";
 
   constructor(private httpClient: HttpClient) { }
 

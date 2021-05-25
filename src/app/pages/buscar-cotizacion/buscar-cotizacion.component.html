@@ -24,13 +24,13 @@
             <!-- Progress Column -->
             <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre del cliente </th>
-                <td mat-cell *matCellDef="let row"> Marco Antonio Guajardo Vigil </td>
+                <td mat-cell *matCellDef="let row"> {{row.nombre_cliente}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="fecha">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-                <td mat-cell *matCellDef="let row"> {{row.createdAt | date: 'dd / MM / yyyy'}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.fecha | date: 'dd / MM / yyyy'}} </td>
             </ng-container>
 
             <!-- Color Column -->
@@ -42,16 +42,15 @@
             <!-- Color Column -->
             <ng-container matColumnDef="total">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-                <td mat-cell *matCellDef="let row"> {{row.total}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.total | currency}} </td>
             </ng-container>
 
             <!-- Actions Column -->
             <ng-container matColumnDef="editar">
                 <th mat-header-cell *matHeaderCellDef> Editar </th>
                 <td mat-cell *matCellDef="let row">
-                    <button class="table-btn" mat-icon-button mat-button
-                        matTooltip="Editar Cotización">
-                        <mat-icon class="edit-button" color="primary">edit</mat-icon>
+                    <button [disabled]="row.estado === 'completada'" class="table-btn" mat-icon-button mat-button matTooltip="Editar Cotización" (click)="editarCotizacion(row)">
+                        <mat-icon class="edit-button" [color]="(row.estado === 'completada') ? 'disabled' : 'primary'">edit</mat-icon>
                     </button>
                 </td>
             </ng-container>
@@ -60,8 +59,7 @@
             <ng-container matColumnDef="eliminar">
                 <th mat-header-cell *matHeaderCellDef> Eliminar </th>
                 <td mat-cell *matCellDef="let row">
-                    <button class="table-btn" mat-icon-button mat-button
-                        matTooltip="Eliminar Cotización"
+                    <button class="table-btn" mat-icon-button mat-button matTooltip="Eliminar Cotización"
                         (click)="onDelete(row)">
                         <mat-icon color="warn">delete</mat-icon>
                     </button>

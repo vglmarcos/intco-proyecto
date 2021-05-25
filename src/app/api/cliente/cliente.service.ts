@@ -2,12 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICliente } from 'src/app/models/ICliente';
 
+
+export interface respuesta {
+  res: string,
+  id: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
 
-  private basePath = "https://api-rest-vitrum.herokuapp.com";
+  private basePath = "http://localhost:3000";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -16,7 +22,7 @@ export class ClienteService {
   }
 
   agregarClientePost(cliente: ICliente) {
-    return this.httpClient.request('post', `${this.basePath}/api/cliente/agregarCliente`, {
+    return this.httpClient.request<respuesta>('post', `${this.basePath}/api/cliente/agregarCliente`, {
       body: cliente
     });
   }
