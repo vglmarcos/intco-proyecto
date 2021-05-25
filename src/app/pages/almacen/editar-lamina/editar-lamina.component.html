@@ -1,0 +1,49 @@
+<div [ngClass]='[actualTheme, "main"]'>
+    <mat-toolbar class="title-modal">
+        <h2>Editar Lamina</h2>
+    </mat-toolbar>
+    <div class="body-modal">
+        <form [formGroup]="firstFormGroup">
+            <div class="content">
+                <div class="form-group-client">
+                    <div class="row-inputs first-row">
+                        <mat-form-field appearance="outline" class="form-input">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="nombreCtrl" required>
+                            <mat-error *ngIf="firstFormGroup.controls['nombreCtrl'].hasError('required')">
+                                El nombre es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-input">
+                            <mat-label>Cantidad</mat-label>
+                            <input class="remove-flechitas" type="number" matInput formControlName="cantCtrl" required>
+                            <mat-error *ngIf="firstFormGroup.controls['cantCtrl'].hasError('required')">
+                                La cantidad a almacenar es requerida
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row-inputs">
+                        <mat-form-field appearance="outline" class="form-input">
+                            <mat-label>Nombre del Proveedor</mat-label>
+                            <input [matAutocomplete]="auto" matInput formControlName="provCtrl" required>
+                            <mat-autocomplete [class]="actualTheme" #auto="matAutocomplete">
+                                <mat-option [color]="color" (mouseover)=" color = 'accent'"
+                                    (mouseout)=" color = 'primary'" [ngClass]='[actualTheme]'
+                                    *ngFor="let proveedor of filteredOptions | async" [value]="proveedor.nombre">
+                                    {{proveedor.nombre}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="firstFormGroup.controls['provCtrl'].hasError('required')">
+                                El nombre del proveedor es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="footer-stepper">
+            <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+            <button mat-button color="primary" (click)="guardarLamina()">Guardar</button>
+        </div>
+    </div>
+</div>

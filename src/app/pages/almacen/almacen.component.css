@@ -73,16 +73,20 @@ mat-label, input {
     width: 28% !important;
 }
 
-.mat-column-telefono {
-    width: 15% !important;
+.mat-column-cantidad {
+    width: 10% !important;
 }
 
-.mat-column-correo {
-    width: 15% !important;
-}
-
-.mat-column-direccion {
+.mat-column-nombre_proveedor {
     width: 20% !important;
+}
+
+.mat-column-ultima_fecha {
+    width: 20% !important;
+}
+
+.mat-column-anadir {
+    width: 5% !important;
 }
 
 .mat-column-editar {

@@ -1,0 +1,58 @@
+<div [ngClass]='[actualTheme, "main"]'>
+    <mat-toolbar class="title-modal">
+        <h2>Editar Cliente</h2>
+    </mat-toolbar>
+    <div class="body-modal">
+        <form [formGroup]="firstFormGroup">
+            <div class="content">
+                <div class="form-group-client">
+                    <div class="row-inputs first-row">
+                        <mat-form-field appearance="outline" class="form-input">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="nombreCtrl" required>
+                            <mat-error *ngIf="firstFormGroup.controls['nombreCtrl'].hasError('required')">
+                                El nombre es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-input">
+                            <mat-label>Correo</mat-label>
+                            <input matInput formControlName="correoCtrl" required>
+                            <mat-error
+                                *ngIf="firstFormGroup.controls['correoCtrl'].hasError('email') && !firstFormGroup.controls['correoCtrl'].hasError('required')">
+                                El correo ingresado no es válido.
+                            </mat-error>
+                            <mat-error *ngIf="firstFormGroup.controls['correoCtrl'].hasError('required')">
+                                El correo es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row-inputs">
+                        <mat-form-field appearance="outline" class="form-input">
+                            <mat-label>Teléfono</mat-label>
+                            <input class="remove-flechitas" maxLength="10" type="number" matInput
+                                formControlName="telCtrl" required>
+                            <mat-error
+                                *ngIf="firstFormGroup.controls['telCtrl'].hasError('minlength') && !firstFormGroup.controls['telCtrl'].hasError('required')">
+                                El número telefónico tiene que tener 10 números.
+                            </mat-error>
+                            <mat-error *ngIf="firstFormGroup.controls['telCtrl'].hasError('required')">
+                                El número telefónico es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-input">
+                            <mat-label>Lugar de instalación</mat-label>
+                            <input matInput formControlName="dirCtrl" required>
+                            <mat-error *ngIf="firstFormGroup.controls['dirCtrl'].hasError('required')">
+                                El lugar de instalación es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="footer-stepper">
+            <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+            <button mat-button color="primary" (click)="guardarCliente()" >Guardar</button>
+        </div>
+    </div>
+</div>
