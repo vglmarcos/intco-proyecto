@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IOption } from './IOption';
 import { opciones } from './opciones';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
@@ -15,7 +16,10 @@ export class MenuComponent implements OnInit {
   
   public OPCIONES: IOption[] = opciones;
 
-  constructor(public colorThemeService: ColorThemeService) { 
+  constructor(
+    public colorThemeService: ColorThemeService,
+    private router: Router,
+  ) { 
       this.colorThemeService.theme.subscribe((theme) => {
       this.actualTheme = theme;
       this.viewColor();
@@ -45,6 +49,10 @@ export class MenuComponent implements OnInit {
       case 'light-gray-theme': this.themeOption = 'light-gray-theme'; this.buttonColorMode = 'light-gray-button'; break;
       case 'dark-gray-theme': this.themeOption = 'dark-gray-theme'; this.buttonColorMode = 'dark-gray-button'; break;
     }
+  }
+
+  onNavigate(ruta: string){
+    this.router.navigate([ruta]);
   }
 
 }

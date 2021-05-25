@@ -59,7 +59,7 @@ export const opciones: IOption[] = [
     },
     {
         image: 'assets/img/clientes.png',
-        route: '/buscar-cotizacion',
+        route: '/buscar-clientes',
         image_width: '50px',
         image_heigth: '50px',
         tooltip: 'Clientes',
