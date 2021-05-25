@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { IProducto } from 'src/app/models/IProducto';
 import { ProductoService } from 'src/app/api/producto/producto.service';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,6 +16,9 @@ import { ICotizacion } from 'src/app/models/ICotizacion';
 import { ICarrito } from 'src/app/models/ICarrito';
 import { ClienteService } from 'src/app/api/cliente/cliente.service';
 import { CotizacionService } from 'src/app/api/cotizacion/cotizacion.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { ConfirmarEliminarComponent } from 'src/app/shared/confirmar-eliminar/confirmar-eliminar.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface item {
     id_producto: number,
@@ -42,6 +45,12 @@ export interface item {
 
 export class AgregarCotizacionComponent implements OnInit {
 
+    color = 'primary';
+    public actualTheme: string;
+    dark = 'dark';
+    light = 'light';
+    public colorMode: string;
+
     public filteredOptions: Observable<IProducto[]>;
     public PRODUCTOS: IProducto[];
 
@@ -65,9 +74,6 @@ export class AgregarCotizacionComponent implements OnInit {
         estado: '',
     };
 
-    public actualTheme: string;
-    public color = 'primary';
-
     public productosCarrito: item[] = [];
     public dataSource: MatTableDataSource<item>;
 
@@ -81,16 +87,19 @@ export class AgregarCotizacionComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<AgregarCotizacionComponent>,
+        public dialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data: string,
         public colorThemeService: ColorThemeService,
         private _formBuilder: FormBuilder,
         private productoService: ProductoService,
         private clienteService: ClienteService,
-        private cotizacionService: CotizacionService
+        private cotizacionService: CotizacionService,
+        public snackBarService: SnackBarService
     ) {
         this.actualizarDatos();
         this.colorThemeService.theme.subscribe((theme) => {
             this.actualTheme = theme;
+            this.viewColor();
         });
     }
 
@@ -103,6 +112,16 @@ export class AgregarCotizacionComponent implements OnInit {
                     map(value => this._filter(value))
                 );
         });
+    }
+
+    viewColor() {
+        if (this.actualTheme.includes(this.dark)) {
+            this.colorMode = this.dark;
+        }
+        if (this.actualTheme.includes(this.light)) {
+            this.colorMode = this.light;
+        }
+        console.log(this.colorMode);
     }
 
     ngOnInit() {
@@ -147,7 +166,7 @@ export class AgregarCotizacionComponent implements OnInit {
         this.secondFormGroup.controls['anchoCtrl'].valueChanges.subscribe((value) => {
             if (value) {
                 try {
-                    ancho = parseInt(value);
+                    ancho = parseFloat(value);
                     if (ancho && largo && cantidad && precio) {
                         total = ancho * largo * cantidad * precio;
                         this.secondFormGroup.controls['totalCtrl'].setValue(total);
@@ -166,7 +185,7 @@ export class AgregarCotizacionComponent implements OnInit {
         this.secondFormGroup.controls['largoCtrl'].valueChanges.subscribe((value) => {
             if (value) {
                 try {
-                    largo = parseInt(value);
+                    largo = parseFloat(value);
                     if (ancho && largo && cantidad && precio) {
                         total = ancho * largo * cantidad * precio;
                         this.secondFormGroup.controls['totalCtrl'].setValue(total);
@@ -185,7 +204,7 @@ export class AgregarCotizacionComponent implements OnInit {
         this.secondFormGroup.controls['precioCtrl'].valueChanges.subscribe((value) => {
             if (value) {
                 try {
-                    precio = parseInt(value);
+                    precio = parseFloat(value);
                     if (ancho && largo && cantidad && precio) {
                         total = ancho * largo * cantidad * precio;
                         this.secondFormGroup.controls['totalCtrl'].setValue(total);
@@ -204,7 +223,7 @@ export class AgregarCotizacionComponent implements OnInit {
         this.secondFormGroup.controls['cantidadCtrl'].valueChanges.subscribe((value) => {
             if (value) {
                 try {
-                    cantidad = parseInt(value);
+                    cantidad = parseFloat(value);
                     console.log(cantidad)
                     if (ancho && largo && cantidad && precio) {
                         total = ancho * largo * cantidad * precio;
@@ -240,40 +259,47 @@ export class AgregarCotizacionComponent implements OnInit {
             let largoVacio = this.secondFormGroup.controls['largoCtrl'].value === '' || this.secondFormGroup.controls['largoCtrl'].value === null;
             let cantidadVacia = this.secondFormGroup.controls['cantidadCtrl'].value === '' || this.secondFormGroup.controls['cantidadCtrl'].value === null;
             if (!anchoVacio && !largoVacio && !cantidadVacia) {
-                if (parseInt(this.secondFormGroup.controls['anchoCtrl'].value) > 0) {
-                    if (parseInt(this.secondFormGroup.controls['largoCtrl'].value) > 0) {
-                        if (parseInt(this.secondFormGroup.controls['cantidadCtrl'].value) > 0) {
+                if (parseFloat(this.secondFormGroup.controls['anchoCtrl'].value) > 0.0) {
+                    if (parseFloat(this.secondFormGroup.controls['largoCtrl'].value) > 0.0) {
+                        if (parseInt(this.secondFormGroup.controls['cantidadCtrl'].value) > 0.0) {
                             let item: item = {
                                 id_producto: this.index,
                                 nombre: producto.nombre,
                                 tipo: producto.tipo,
                                 dimensiones: {
-                                    largo: parseInt(this.secondFormGroup.controls['largoCtrl'].value),
-                                    ancho: parseInt(this.secondFormGroup.controls['anchoCtrl'].value)
+                                    largo: parseFloat(this.secondFormGroup.controls['largoCtrl'].value),
+                                    ancho: parseFloat(this.secondFormGroup.controls['anchoCtrl'].value)
                                 },
-                                cantidad: parseInt(this.secondFormGroup.controls['cantidadCtrl'].value),
+                                cantidad: parseFloat(this.secondFormGroup.controls['cantidadCtrl'].value),
                                 precio_unitario: producto.precio,
-                                total: parseInt(this.secondFormGroup.controls['totalCtrl'].value)
+                                total: parseFloat(this.secondFormGroup.controls['totalCtrl'].value)
                             }
                             this.productosCarrito.push(item);
                             this.dataSource = new MatTableDataSource(this.productosCarrito);
                             this.dataSource.paginator = this.paginator;
                             this.index++;
 
+                            this.snackBarService.greenSnackBar('Se ha agregado el producto a Carrito');
+
                             this.resetCampos();
                         } else {
+                            this.snackBarService.redSnackBar('La cantidad debe ser mayor a cero');
                             console.log('la cantidad debe ser mayor a cero')
                         }
                     } else {
+                        this.snackBarService.redSnackBar('El largo debe ser mayor a cero');
                         console.log('el largo debe ser mayor a cero')
                     }
                 } else {
+                    this.snackBarService.redSnackBar('El ancho debe ser mayor a cero');
                     console.log('el ancho debe ser mayor a cero')
                 }
             } else {
+                this.snackBarService.redSnackBar("Se deben llenar todos los datos");
                 console.log('se deben llenar todos los datos');
             }
         } else {
+            this.snackBarService.redSnackBar("Favor de ingresar producto válido");
             console.log('ingresar producto valido')
         }
     }
@@ -288,9 +314,23 @@ export class AgregarCotizacionComponent implements OnInit {
     }
 
     deleteItem(id: string) {
-        this.productosCarrito = this.productosCarrito.filter(item => item.id_producto !== parseInt(id));
-        this.dataSource = new MatTableDataSource(this.productosCarrito);
-        this.dataSource.paginator = this.paginator;
+        const dialogRef = this.dialog.open(ConfirmarEliminarComponent, {
+            data: 'Producto del Carrito',
+            autoFocus: false
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result.res) {
+                this.snackBarService.greenSnackBar('Se ha eliminado el producto de carrito');
+                this.productosCarrito = this.productosCarrito.filter(item => item.id_producto !== parseInt(id));
+                this.dataSource = new MatTableDataSource(this.productosCarrito);
+                this.dataSource.paginator = this.paginator;
+
+            } else {
+                this.snackBarService.redSnackBar('Eliminación cancelada');
+                console.log(`Exit on click outside`);
+            }
+        });
     }
 
     iniciarCotizacion(stepper: MatStepper) {
@@ -343,6 +383,7 @@ export class AgregarCotizacionComponent implements OnInit {
         this.cotizacionService.agregarCotizacionPost(this.cotizacion).subscribe(res => {
             console.log('Cotizacion guardada con exito')
         });
+        this.snackBarService.greenSnackBar('Cotizacion guardada con éxito');
         this.dialogRef.close({
             res: "realizada"
         });

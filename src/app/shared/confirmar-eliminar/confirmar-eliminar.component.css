@@ -1,0 +1,43 @@
+.main {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-modal {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    height: 100px;
+}
+
+.title-modal h2 {
+    margin: 0;
+}
+
+.body-modal{
+    margin: 20px;
+}
+
+.body-modal p{
+    font-size: 18px;
+}
+
+.footer-modal {
+    margin-left: 35px;
+    margin-top: 30px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+::ng-deep .dark-cyan-theme {
+    color: #fff !important;
+}
+
+.dark-cyan-theme {
+    color: #fff !important;
+}

@@ -38,6 +38,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { ConfirmarEliminarComponent } from './shared/confirmar-eliminar/confirmar-eliminar.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     BuscarCotizacionComponent,
     HeaderComponent,
     AgregarCotizacionComponent,
-    EditarCotizacionComponent
+    EditarCotizacionComponent,
+    ConfirmarEliminarComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ProveedorService,
     ReporteService,
     VentaService,
-    LoginService
+    LoginService,
+    SnackBarService
   ],
   bootstrap: [AppComponent]
 })

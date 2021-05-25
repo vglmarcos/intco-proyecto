@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ColorThemeService } from 'src/app/services/color-theme.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/api/login/login.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -32,8 +33,9 @@ export class LoginComponent implements OnInit {
   constructor(public colorThemeService: ColorThemeService,
     private router: Router,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar,
-    private loginService: LoginService
+    // private _snackBar: MatSnackBar,
+    private loginService: LoginService,
+    public snackBarService: SnackBarService
   ) {
     this.colorThemeService.theme.subscribe((theme) => {
       this.actualTheme = theme;
@@ -93,16 +95,18 @@ export class LoginComponent implements OnInit {
     if (this.loginService.iniciarSesion(this.user, this.password)) {
       this.router.navigate(['/buscar-cotizacion']);
       console.log('ok');
-      this._snackBar.open('Bienvenido al sistema', '', {
-        duration: 2000,
-        panelClass: ['snackBarGreen']
-      });
+      this.snackBarService.greenSnackBar('Bienvenido a Vitrum');
+      // this._snackBar.open('Bienvenido al sistema', '', {
+      //   duration: 2000,
+      //   panelClass: ['snackBarGreen']
+      // });
     }
     else {
-      this._snackBar.open('Usuario o contraseña incorrectos, favor de intentar nuevamente', '', {
-        duration: 2000,
-        panelClass: ['snackBarRed']
-      });
+      this.snackBarService.redSnackBar('Usuario o contraseña incorrectos, favor de intentar nuevamente');
+      // this._snackBar.open('Usuario o contraseña incorrectos, favor de intentar nuevamente', '', {
+      //   duration: 2000,
+      //   panelClass: ['snackBarRed']
+      // });
     }
   }
 

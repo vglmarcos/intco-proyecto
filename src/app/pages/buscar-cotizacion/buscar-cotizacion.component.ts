@@ -11,6 +11,8 @@ import { CotizacionService } from 'src/app/api/cotizacion/cotizacion.service';
 import { ClienteService } from 'src/app/api/cliente/cliente.service';
 import { ICliente } from 'src/app/models/ICliente';
 import { EditarCotizacionComponent } from './editar-cotizacion/editar-cotizacion.component';
+import { ConfirmarEliminarComponent } from 'src/app/shared/confirmar-eliminar/confirmar-eliminar.component';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 export interface tablaCotizaciones {
   id: number,
@@ -48,7 +50,8 @@ export class BuscarCotizacionComponent {
     public colorThemeService: ColorThemeService,
     public dialog: MatDialog,
     private cotizacionService: CotizacionService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    public snackBarService: SnackBarService
   ) {
 
     this.iniciarDatos();
@@ -109,11 +112,26 @@ export class BuscarCotizacionComponent {
   }
 
   onDelete(cotizacion: ICotizacion) {
-    this.cotizacionService.eliminarClienteDelete(cotizacion).subscribe(res => {
-      this.iniciarDatos();
+    let cot = this.COTIZACIONES.find(coti => coti.id === cotizacion.id);
+    const dialogRef = this.dialog.open(ConfirmarEliminarComponent, {
+      data: 'Cotizacion',
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.res) {
+        this.cotizacionService.eliminarClienteDelete(cot).subscribe(res => {
+          this.snackBarService.greenSnackBar('Se ha eliminado la cotizacion');
+          this.iniciarDatos();
+        });
+      } else {
+        this.snackBarService.redSnackBar('Eliminación cancelada');
+        console.log(`Exit on click outside`);
+      }
     });
   }
 
+  
   editarCotizacion(cotizacion: ICotizacion) {
     let cot = this.COTIZACIONES.find(coti => coti.id === cotizacion.id)
     const dialogRef = this.dialog.open(EditarCotizacionComponent, {
