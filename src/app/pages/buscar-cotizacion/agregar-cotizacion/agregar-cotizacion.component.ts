@@ -52,7 +52,10 @@ export class AgregarCotizacionComponent implements OnInit {
     public colorMode: string;
 
     public filteredOptions: Observable<IProducto[]>;
+    // public filteredOptionsClientes: Observable<ICliente[]>
+
     public PRODUCTOS: IProducto[];
+    public CLIENTES: ICliente[];
 
     public checked: boolean = false;
 
@@ -112,6 +115,15 @@ export class AgregarCotizacionComponent implements OnInit {
                     map(value => this._filter(value))
                 );
         });
+
+        // this.clienteService.obtenerClientesGet().subscribe(clientes => {
+        //     this.CLIENTES = clientes;
+        //     this.filteredOptionsClientes = this.firstFormGroup.controls['nombreCtrl'].valueChanges
+        //         .pipe(
+        //             startWith(''),
+        //             map(value => this._filterC(value))
+        //         );
+        // });
     }
 
     viewColor() {
@@ -146,6 +158,12 @@ export class AgregarCotizacionComponent implements OnInit {
 
         return this.PRODUCTOS.filter(producto => producto.nombre.toLowerCase().includes(filterValue));
     }
+
+    // private _filterC(nombre: string): ICliente[] {
+    //     const filterValueC = nombre.toLowerCase();
+
+    //     return this.CLIENTES.filter(cliente => cliente.nombre.toLowerCase().includes(filterValueC));
+    // }
 
     ngAfterViewInit() {
         let ancho;
@@ -223,7 +241,7 @@ export class AgregarCotizacionComponent implements OnInit {
         this.secondFormGroup.controls['cantidadCtrl'].valueChanges.subscribe((value) => {
             if (value) {
                 try {
-                    cantidad = parseFloat(value);
+                    cantidad = parseInt(value);
                     console.log(cantidad)
                     if (ancho && largo && cantidad && precio) {
                         total = ancho * largo * cantidad * precio;
@@ -270,7 +288,7 @@ export class AgregarCotizacionComponent implements OnInit {
                                     largo: parseFloat(this.secondFormGroup.controls['largoCtrl'].value),
                                     ancho: parseFloat(this.secondFormGroup.controls['anchoCtrl'].value)
                                 },
-                                cantidad: parseFloat(this.secondFormGroup.controls['cantidadCtrl'].value),
+                                cantidad: parseInt(this.secondFormGroup.controls['cantidadCtrl'].value),
                                 precio_unitario: producto.precio,
                                 total: parseFloat(this.secondFormGroup.controls['totalCtrl'].value)
                             }

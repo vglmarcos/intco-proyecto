@@ -6,7 +6,7 @@ import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes
 import { BuscarProveedoresComponent } from './pages/buscar-proveedores/buscar-proveedores.component';
 import { BuscarUsuariosComponent } from './pages/buscar-usuarios/buscar-usuarios.component';
 import { BuscarProductosComponent } from './pages/buscar-productos/buscar-productos.component';
-
+import { AlmacenComponent } from './pages/almacen/almacen.component';
 
 const routes: Routes = [
   {
@@ -32,6 +32,10 @@ const routes: Routes = [
   { 
     path: 'buscar-producto',
     component: BuscarProductosComponent
+  },
+  {
+    path: 'almacen',
+    component: AlmacenComponent
   },
   {
     path: '',

@@ -68,7 +68,7 @@
                                     <mat-label>Nombre</mat-label>
                                     <input type="text" aria-label="Nombre" matInput formControlName="nombreCtrl"
                                         [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-autocomplete [class]="actualTheme" #auto="matAutocomplete">
                                         <mat-option [color]="color" (mouseover)=" color = 'accent'"
                                             (mouseout)=" color = 'primary'" [ngClass]='[actualTheme]'
                                             *ngFor="let producto of filteredOptions | async" [value]="producto.nombre">
@@ -107,7 +107,8 @@
                                         type="number" class="example-right-align">
                                     <span matPrefix>$&nbsp;</span>
                                 </mat-form-field>
-                                <button (click)="addCarrito()" class="add-btn" mat-fab matTooltip="Crear Cotización">
+                                <button (click)="addCarrito()" [ngClass]='[colorMode, "add-btn"]' mat-fab matTooltip="Agregar a Carrito"
+                                    [color]="color" (mouseover)=" color = 'accent'" (mouseout)=" color = 'primary'">
                                     <mat-icon>add</mat-icon>
                                 </button>
                             </div>

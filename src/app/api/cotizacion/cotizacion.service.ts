@@ -27,7 +27,7 @@ export class CotizacionService {
     });
   }
 
-  eliminarClienteDelete(cotizacion: ICotizacion) {
+  eliminarCotizacionDelete(cotizacion: ICotizacion) {
     return this.httpClient.request('delete', `${this.basePath}/api/cotizacion/eliminarCotizacion`, {
       body: cotizacion
     });

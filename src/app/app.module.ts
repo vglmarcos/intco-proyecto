@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -50,6 +49,11 @@ import { EditarUsuarioComponent } from 'src/app/pages/buscar-usuarios/editar-usu
 import { BuscarProductosComponent } from 'src/app/pages/buscar-productos/buscar-productos.component';
 import { AgregarProductoComponent } from 'src/app/pages/buscar-productos/agregar-producto/agregar-producto.component';
 import { EditarProductoComponent } from 'src/app/pages/buscar-productos/editar-producto/editar-producto.component';
+import { EditarClientesComponent } from './pages/buscar-clientes/editar-clientes/editar-clientes.component';
+import { AlmacenComponent } from './pages/almacen/almacen.component';
+import { AgregarLaminaComponent } from './pages/almacen/agregar-lamina/agregar-lamina.component';
+import { EditarLaminaComponent } from './pages/almacen/editar-lamina/editar-lamina.component';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +74,11 @@ import { EditarProductoComponent } from 'src/app/pages/buscar-productos/editar-p
     EditarUsuarioComponent,
     BuscarProductosComponent,
     AgregarProductoComponent,
-    EditarProductoComponent
+    EditarProductoComponent,
+    EditarClientesComponent,
+    AlmacenComponent,
+    AgregarLaminaComponent,
+    EditarLaminaComponent
   ],
   imports: [
     BrowserModule,
