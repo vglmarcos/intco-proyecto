@@ -1,5 +1,5 @@
 <div class="container-menu">
-    <button mat-raised-button class="btn-opt" [class]="buttonColorMode" *ngFor="let opcion of OPCIONES; let i = index" [matTooltip]='opcion.tooltip' matTooltipPosition="after">
+    <button mat-raised-button class="btn-opt" [class]="buttonColorMode" *ngFor="let opcion of OPCIONES; let i = index" [matTooltip]='opcion.tooltip' matTooltipPosition="after" (click)="onNavigate(opcion.route)">
         <img class="img-opt" [src]="opcion.image" alt="">
     </button>
 <!-- 

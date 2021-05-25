@@ -40,6 +40,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ConfirmarEliminarComponent } from './shared/confirmar-eliminar/confirmar-eliminar.component';
+import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ConfirmarEliminarComponent } from './shared/confirmar-eliminar/confirma
     HeaderComponent,
     AgregarCotizacionComponent,
     EditarCotizacionComponent,
-    ConfirmarEliminarComponent
+    ConfirmarEliminarComponent,
+    BuscarClientesComponent
   ],
   imports: [
     BrowserModule,
