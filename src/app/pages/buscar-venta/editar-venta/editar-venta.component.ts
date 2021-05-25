@@ -23,46 +23,44 @@ import { VentaService } from 'src/app/api/venta/venta.service';
 import { IVenta } from 'src/app/models/IVenta';
 
 export interface item {
-    id_producto: number,
-    nombre: string,
-    tipo: string,
-    dimensiones: {
-        largo: number,
-        ancho: number
-    },
-    cantidad: number,
-    precio_unitario: number,
-    total: number
+  id_producto: number,
+  nombre: string,
+  tipo: string,
+  dimensiones: {
+      largo: number,
+      ancho: number
+  },
+  cantidad: number,
+  precio_unitario: number,
+  total: number
 }
 
 @Component({
-    selector: 'app-agregar-cotizacion',
-    templateUrl: './agregar-cotizacion.component.html',
-    styleUrls: ['./agregar-cotizacion.component.css'],
-    providers: [
-        { provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
-        { provide: MatPaginatorIntl, useValue: CustomPaginator() }
-    ]
+  selector: 'app-editar-venta',
+  templateUrl: './editar-venta.component.html',
+  styleUrls: ['./editar-venta.component.css'],
+  providers: [
+    { provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() }
+]
 })
+export class EditarVentaComponent implements OnInit {
 
-export class AgregarCotizacionComponent implements OnInit {
-
-    color = 'primary';
+  color = 'primary';
     public actualTheme: string;
     dark = 'dark';
     light = 'light';
     public colorMode: string;
 
     public filteredOptions: Observable<IProducto[]>;
-    // public filteredOptionsClientes: Observable<ICliente[]>
-
     public PRODUCTOS: IProducto[];
-    public CLIENTES: ICliente[];
 
     public checked: boolean = false;
 
     public firstFormGroup: FormGroup;
     public secondFormGroup: FormGroup;
+
+    public VENTAS: IVenta[];
 
     public cliente: ICliente = {
         nombre: '',
@@ -79,6 +77,11 @@ export class AgregarCotizacionComponent implements OnInit {
         estado: '',
     };
 
+    public ventas: IVenta ={
+      id_cotizacion: 0,
+      estado: '',
+    }
+
     public productosCarrito: item[] = [];
     public dataSource: MatTableDataSource<item>;
 
@@ -91,21 +94,44 @@ export class AgregarCotizacionComponent implements OnInit {
     ];
 
     constructor(
-        public dialogRef: MatDialogRef<AgregarCotizacionComponent>,
+        public dialogRef: MatDialogRef<EditarVentaComponent>,
         public dialog: MatDialog,
-        @Inject(MAT_DIALOG_DATA) public data: string,
+        @Inject(MAT_DIALOG_DATA) public data: ICotizacion,
         public colorThemeService: ColorThemeService,
         private _formBuilder: FormBuilder,
         private productoService: ProductoService,
         private clienteService: ClienteService,
         private cotizacionService: CotizacionService,
         public snackBarService: SnackBarService,
-        private ventaService: VentaService
+        public ventaService: VentaService
     ) {
         this.actualizarDatos();
         this.colorThemeService.theme.subscribe((theme) => {
             this.actualTheme = theme;
             this.viewColor();
+        });
+
+        this.cotizacion = this.data;
+        
+        this.checked = (this.ventas.estado === 'Aprobada') ? false : true;
+
+        this.productoService.obtenerProductosGet().subscribe(productos => {
+            for(let i = 0; i < this.data.carrito.length; i++) {
+                let producto = productos.find(producto => producto.id === this.data.carrito[i].id_producto)
+                console.log(producto);
+                let item: item = {
+                    cantidad: this.data.carrito[i].cantidad,
+                    dimensiones: this.data.carrito[i].dimensiones,
+                    id_producto: this.data.carrito[i].id_producto,
+                    nombre: producto.nombre,
+                    precio_unitario: producto.precio,
+                    tipo: producto.tipo,
+                    total: this.data.carrito[i].dimensiones.largo * this.data.carrito[i].dimensiones.ancho * this.data.carrito[i].cantidad * producto.precio
+                }
+                this.productosCarrito.push(item);
+            }
+            this.dataSource = new MatTableDataSource(this.productosCarrito);
+            this.dataSource.paginator = this.paginator;
         });
     }
 
@@ -118,15 +144,6 @@ export class AgregarCotizacionComponent implements OnInit {
                     map(value => this._filter(value))
                 );
         });
-
-        // this.clienteService.obtenerClientesGet().subscribe(clientes => {
-        //     this.CLIENTES = clientes;
-        //     this.filteredOptionsClientes = this.firstFormGroup.controls['nombreCtrl'].valueChanges
-        //         .pipe(
-        //             startWith(''),
-        //             map(value => this._filterC(value))
-        //         );
-        // });
     }
 
     viewColor() {
@@ -143,8 +160,17 @@ export class AgregarCotizacionComponent implements OnInit {
         this.firstFormGroup = this._formBuilder.group({
             nombreCtrl: ['', Validators.required],
             correoCtrl: ['', [Validators.required, Validators.email]],
-            telCtrl: ['', Validators.required],
+            telCtrl: ['', [Validators.required, Validators.minLength(10)]],
             dirCtrl: ['', Validators.required],
+        });
+        this.clienteService.obtenerClientesGet().subscribe(clientes => {
+            console.log(this.data)
+            this.cliente = clientes.find(cliente => cliente.id === this.data.id_cliente);
+            console.log(this.cliente)
+            this.firstFormGroup.controls['nombreCtrl'].setValue(this.cliente.nombre);
+            this.firstFormGroup.controls['correoCtrl'].setValue(this.cliente.correo);
+            this.firstFormGroup.controls['telCtrl'].setValue(this.cliente.telefono);
+            this.firstFormGroup.controls['dirCtrl'].setValue(this.cliente.direccion);
         });
         this.secondFormGroup = this._formBuilder.group({
             nombreCtrl: [''],
@@ -161,12 +187,6 @@ export class AgregarCotizacionComponent implements OnInit {
 
         return this.PRODUCTOS.filter(producto => producto.nombre.toLowerCase().includes(filterValue));
     }
-
-    // private _filterC(nombre: string): ICliente[] {
-    //     const filterValueC = nombre.toLowerCase();
-
-    //     return this.CLIENTES.filter(cliente => cliente.nombre.toLowerCase().includes(filterValueC));
-    // }
 
     ngAfterViewInit() {
         let ancho;
@@ -260,6 +280,8 @@ export class AgregarCotizacionComponent implements OnInit {
                 this.secondFormGroup.controls['totalCtrl'].setValue('0');
             }
         });
+
+
     }
 
     cancelar() {
@@ -280,9 +302,9 @@ export class AgregarCotizacionComponent implements OnInit {
             let largoVacio = this.secondFormGroup.controls['largoCtrl'].value === '' || this.secondFormGroup.controls['largoCtrl'].value === null;
             let cantidadVacia = this.secondFormGroup.controls['cantidadCtrl'].value === '' || this.secondFormGroup.controls['cantidadCtrl'].value === null;
             if (!anchoVacio && !largoVacio && !cantidadVacia) {
-                if (parseFloat(this.secondFormGroup.controls['anchoCtrl'].value) > 0.0) {
-                    if (parseFloat(this.secondFormGroup.controls['largoCtrl'].value) > 0.0) {
-                        if (parseInt(this.secondFormGroup.controls['cantidadCtrl'].value) > 0.0) {
+                if (parseFloat(this.secondFormGroup.controls['anchoCtrl'].value) > 0) {
+                    if (parseFloat(this.secondFormGroup.controls['largoCtrl'].value) > 0) {
+                        if (parseInt(this.secondFormGroup.controls['cantidadCtrl'].value) > 0) {
                             let item: item = {
                                 id_producto: this.index,
                                 nombre: producto.nombre,
@@ -371,48 +393,45 @@ export class AgregarCotizacionComponent implements OnInit {
                     subtotal: this.productosCarrito[i].total
                 });
             }
-            this.clienteService.agregarClientePost(this.cliente).subscribe(res => {
+            console.log(this.cliente);
+            this.clienteService.editarClientePut(this.cliente).subscribe(res => {
                 let total = 0;
                 items.forEach(item => {
                     total += item.subtotal
                 });
-                this.cotizacion = {
-                    id_usuario: 1,
-                    id_cliente: res.id + 1,
-                    carrito: items,
-                    subtotal: total,
-                    total: total + (total * .16),
-                    estado: 'Pendiente'
-                }
+                this.cotizacion.id_usuario = 1;
+                this.cotizacion.id_cliente = this.cliente.id;
+                this.cotizacion.carrito = items;
+                this.cotizacion.subtotal = total;
+                this.cotizacion.total = total + (total * .16);
+                this.ventas.estado = 'Aprobada';
                 stepper.next();
             });
         }
     }
 
     iniciarCliente() {
-        this.cliente = {
-            nombre: this.firstFormGroup.controls['nombreCtrl'].value,
-            telefono: this.firstFormGroup.controls['telCtrl'].value,
-            correo: this.firstFormGroup.controls['correoCtrl'].value,
-            direccion: this.firstFormGroup.controls['dirCtrl'].value,
-        }
+        this.cliente.nombre = this.firstFormGroup.controls['nombreCtrl'].value;
+        this.cliente.telefono = this.firstFormGroup.controls['telCtrl'].value;
+        this.cliente.correo = this.firstFormGroup.controls['correoCtrl'].value;
+        this.cliente.direccion = this.firstFormGroup.controls['dirCtrl'].value;
         console.log(this.cliente)
     }
 
-    guardarCotizacion() {
-        this.cotizacion.estado = this.checked ? 'Completada' : 'Pendiente';
+    editarCotizacion() {
+        this.ventas.estado = this.checked ? 'Finalizada' : 'Aprobada';
         if(this.cotizacion.estado == 'Completada') {
-            this.cotizacionService.agregarCotizacionPost(this.cotizacion).subscribe(res => {
-                console.log('Cotizacion guardada con exito')
+            this.cotizacionService.editarCotizacionPut(this.cotizacion).subscribe(res => {
+                console.log('Venta guardada con exito')
                 let venta: IVenta = {
-                    estado: 'Aprobada',
+                    estado: this.ventas.estado,
                     id_cotizacion: res.id
                 }
-                this.ventaService.agregarVentaPost(venta).subscribe(res => {
+                this.ventaService.editarVentaPut(venta).subscribe(res => {
                     console.log('Venta guardada con exito')
                 });
             });
-            this.snackBarService.greenSnackBar('Cotizacion guardada con éxito');
+            this.snackBarService.greenSnackBar('Venta guardada con éxito');
             this.dialogRef.close({
                 res: "realizada"
             });

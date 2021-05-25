@@ -1,0 +1,211 @@
+<div [ngClass]='[actualTheme, "main"]'>
+    <mat-toolbar class="title-modal">
+        <h2>Editar Venta</h2>
+    </mat-toolbar>
+    <div class="body-modal">
+        <mat-horizontal-stepper linear #stepper>
+            <mat-step [stepControl]="firstFormGroup" [editable]="true">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Datos del cliente</ng-template>
+                    <div class="content">
+                        <div class="form-group-client">
+                            <div class="row-inputs first-row">
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput formControlName="nombreCtrl" required>
+                                    <mat-error *ngIf="firstFormGroup.controls['nombreCtrl'].hasError('required')">
+                                        El nombre es requerido.
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Correo</mat-label>
+                                    <input matInput formControlName="correoCtrl" required>
+                                    <mat-error
+                                        *ngIf="firstFormGroup.controls['correoCtrl'].hasError('email') && !firstFormGroup.controls['correoCtrl'].hasError('required')">
+                                        El correo ingresado no es válido.
+                                    </mat-error>
+                                    <mat-error *ngIf="firstFormGroup.controls['correoCtrl'].hasError('required')">
+                                        El correo es requerido.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Teléfono</mat-label>
+                                    <input maxLength="10" type="number" matInput formControlName="telCtrl" required>
+                                    <mat-error
+                                        *ngIf="firstFormGroup.controls['telCtrl'].hasError('minlength') && !firstFormGroup.controls['telCtrl'].hasError('required')">
+                                        El número telefónico tiene que tener 10 números.
+                                    </mat-error>
+                                    <mat-error *ngIf="firstFormGroup.controls['telCtrl'].hasError('required')">
+                                        El número telefónico es requerido.
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="form-input">
+                                    <mat-label>Lugar de instalación</mat-label>
+                                    <input matInput formControlName="dirCtrl" required>
+                                    <mat-error *ngIf="firstFormGroup.controls['dirCtrl'].hasError('required')">
+                                        El lugar de instalación es requerido.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="footer-stepper">
+                            <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+                            <button mat-button color="primary" (click)="iniciarCliente()"
+                                matStepperNext>Siguiente</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" [editable]="true">
+                <ng-template matStepLabel>Agregar productos al carrito</ng-template>
+                <mat-tab-group mat-align-tabs="center">
+                    <mat-tab label="Agregar Producto">
+                        <form class="mat-tab-content" [formGroup]="secondFormGroup">
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" color="primary" class="select-prod">
+                                    <mat-label>Nombre</mat-label>
+                                    <input type="text" aria-label="Nombre" matInput formControlName="nombreCtrl"
+                                        [matAutocomplete]="auto">
+                                    <mat-autocomplete [class]="actualTheme" #auto="matAutocomplete">
+                                        <mat-option [color]="color" (mouseover)=" color = 'accent'"
+                                            (mouseout)=" color = 'primary'" [ngClass]='[actualTheme]'
+                                            *ngFor="let producto of filteredOptions | async" [value]="producto.nombre">
+                                            {{producto.nombre}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" color="primary" class="ancho-largo">
+                                    <mat-label>Ancho</mat-label>
+                                    <input autocomplete="off" matInput formControlName="anchoCtrl" type="number"
+                                        class="example-right-align">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" color="primary" class="ancho-largo">
+                                    <mat-label>Largo</mat-label>
+                                    <input autocomplete="off" matInput formControlName="largoCtrl" type="number"
+                                        class="example-right-align">
+                                </mat-form-field>
+                            </div>
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" color="primaryx" class="form-input">
+                                    <mat-label>Precio unitario</mat-label>
+                                    <input autocomplete="off" matInput readonly formControlName="precioCtrl"
+                                        type="number" class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" color="primary" class="form-input">
+                                    <mat-label>Cantidad</mat-label>
+                                    <input autocomplete="off" matInput formControlName="cantidadCtrl" type="number"
+                                        class="example-right-align">
+                                </mat-form-field>
+                            </div>
+                            <div class="row-inputs">
+                                <mat-form-field appearance="outline" color="primary" class="form-input-full">
+                                    <mat-label>Total</mat-label>
+                                    <input autocomplete="off" matInput readonly formControlName="totalCtrl"
+                                        type="number" class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                </mat-form-field>
+                                <button (click)="addCarrito()" [ngClass]='[colorMode, "add-btn"]' mat-fab matTooltip="Agregar a Carrito"
+                                    [color]="color" (mouseover)=" color = 'accent'" (mouseout)=" color = 'primary'">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </form>
+                    </mat-tab>
+                    <mat-tab label="Carrito">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                            <ng-container matColumnDef="nombre">
+                                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="tipo">
+                                <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                                <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="dimensiones">
+                                <th mat-header-cell *matHeaderCellDef> Dimensiones </th>
+                                <td mat-cell *matCellDef="let element">{{element.dimensiones.largo}} x
+                                    {{element.dimensiones.ancho}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="cantidad">
+                                <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                                <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="precio_unitario">
+                                <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
+                                <td mat-cell *matCellDef="let element"> {{element.precio_unitario | currency}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="total">
+                                <th mat-header-cell *matHeaderCellDef> Total </th>
+                                <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="eliminar">
+                                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button class="table-btn" mat-icon-button mat-button matTooltip="Eliminar Producto"
+                                        (click)="deleteItem(element.id_producto)">
+                                        <mat-icon color="warn">delete</mat-icon>
+                                    </button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[4]"></mat-paginator>
+                    </mat-tab>
+                </mat-tab-group>
+                <div class="footer-stepper">
+                    <button mat-button color="warn" matStepperPrevious>Anterior</button>
+                    <button mat-button color="primary" (click)="iniciarCotizacion(stepper)">Siguiente</button>
+                </div>
+            </mat-step>
+            <mat-step [editable]="true">
+                <ng-template matStepLabel>Finalizar cotización</ng-template>
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{cliente.nombre}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Datos del cliente
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>Correo Electrónico: {{cliente.correo}}</p>
+                        <p>Teléfono: {{cliente.telefono}}</p>
+                        <p>Dirección: {{cliente.direccion}}</p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Total: {{cotizacion.total | currency}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Datos de la cotización
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>Subtotal: {{cotizacion.subtotal | currency}}</p>
+                        <p>IVA: {{cotizacion.subtotal * .16 | currency}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-slide-toggle class="margin-top" color="primary" [(ngModel)]="checked">
+                    Cotización aprobada
+                </mat-slide-toggle>
+                <div class="footer-stepper">
+                    <button mat-button color="warn" matStepperPrevious>Anterior</button>
+                    <button mat-button color="primary" (click)="editarCotizacion()">Guardar</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>

@@ -53,6 +53,8 @@ import { EditarClientesComponent } from './pages/buscar-clientes/editar-clientes
 import { AlmacenComponent } from './pages/almacen/almacen.component';
 import { AgregarLaminaComponent } from './pages/almacen/agregar-lamina/agregar-lamina.component';
 import { EditarLaminaComponent } from './pages/almacen/editar-lamina/editar-lamina.component';
+import { BuscarVentaComponent } from './pages/buscar-venta/buscar-venta.component';
+import { EditarVentaComponent } from './pages/buscar-venta/editar-venta/editar-venta.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { EditarLaminaComponent } from './pages/almacen/editar-lamina/editar-lami
     EditarClientesComponent,
     AlmacenComponent,
     AgregarLaminaComponent,
-    EditarLaminaComponent
+    EditarLaminaComponent,
+    BuscarVentaComponent,
+    EditarVentaComponent
   ],
   imports: [
     BrowserModule,

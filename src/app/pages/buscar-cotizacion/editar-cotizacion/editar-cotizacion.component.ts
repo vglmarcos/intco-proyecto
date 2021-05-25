@@ -19,6 +19,8 @@ import { CotizacionService } from 'src/app/api/cotizacion/cotizacion.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ConfirmarEliminarComponent } from 'src/app/shared/confirmar-eliminar/confirmar-eliminar.component';
 import { MatDialog } from '@angular/material/dialog';
+import { VentaService } from 'src/app/api/venta/venta.service';
+import { IVenta } from 'src/app/models/IVenta';
 
 export interface item {
     id_producto: number,
@@ -94,7 +96,8 @@ export class EditarCotizacionComponent implements OnInit {
         private productoService: ProductoService,
         private clienteService: ClienteService,
         private cotizacionService: CotizacionService,
-        public snackBarService: SnackBarService
+        public snackBarService: SnackBarService,
+        public ventaService: VentaService
     ) {
         this.actualizarDatos();
         this.colorThemeService.theme.subscribe((theme) => {
@@ -104,7 +107,7 @@ export class EditarCotizacionComponent implements OnInit {
 
         this.cotizacion = this.data;
         
-        this.checked = (this.cotizacion.estado === 'pendiente') ? false : true;
+        this.checked = (this.cotizacion.estado === 'Pendiente') ? false : true;
 
         this.productoService.obtenerProductosGet().subscribe(productos => {
             for(let i = 0; i < this.data.carrito.length; i++) {
@@ -394,7 +397,7 @@ export class EditarCotizacionComponent implements OnInit {
                 this.cotizacion.carrito = items;
                 this.cotizacion.subtotal = total;
                 this.cotizacion.total = total + (total * .16);
-                this.cotizacion.estado = 'pendiente';
+                this.cotizacion.estado = 'Pendiente';
                 stepper.next();
             });
         }
@@ -409,14 +412,23 @@ export class EditarCotizacionComponent implements OnInit {
     }
 
     editarCotizacion() {
-        this.cotizacion.estado = this.checked ? 'completada' : 'pendiente';
-        this.cotizacionService.editarCotizacionPut(this.cotizacion).subscribe(res => {
-            console.log('Cotizacion editada con exito')
-        });
-        this.snackBarService.greenSnackBar('Cotización editada con éxito');
-        this.dialogRef.close({
-            res: "realizada"
-        });
+        this.cotizacion.estado = this.checked ? 'Completada' : 'Pendiente';
+        if(this.cotizacion.estado == 'Completada') {
+            this.cotizacionService.editarCotizacionPut(this.cotizacion).subscribe(res => {
+                console.log('Cotizacion guardada con exito')
+                let venta: IVenta = {
+                    estado: 'Aprobada',
+                    id_cotizacion: res.id
+                }
+                this.ventaService.agregarVentaPost(venta).subscribe(res => {
+                    console.log('Venta guardada con exito')
+                });
+            });
+            this.snackBarService.greenSnackBar('Cotizacion guardada con éxito');
+            this.dialogRef.close({
+                res: "realizada"
+            });
+        }
     }
 }
 
