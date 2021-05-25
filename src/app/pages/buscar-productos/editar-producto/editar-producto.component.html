@@ -1,0 +1,38 @@
+<div [ngClass]='[actualTheme, "main"]'>
+    <mat-toolbar class="title-modal">
+        <h2>Editar Producto</h2>
+    </mat-toolbar>
+    <div class="body-modal">
+        <form class="form-agregar-proveedor" [formGroup]="editarProductoFormGroup">
+            <div class="row-inputs first-row">
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombreCtrl" required>
+                    <mat-error *ngIf="editarProductoFormGroup.controls['nombreCtrl'].hasError('required')">
+                        El nombre es requerido.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Tipo</mat-label>
+                    <input matInput formControlName="tipoCtrl" required>
+                    <mat-error *ngIf="editarProductoFormGroup.controls['tipoCtrl'].hasError('required')">
+                        El tipo es requerido.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="form-input-full">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="precioCtrl" required>
+                <mat-error *ngIf="editarProductoFormGroup.controls['precioCtrl'].hasError('required')">
+                    El precio es requerido.
+                </mat-error>
+            </mat-form-field>
+
+            <div class="footer-stepper">
+                <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+                <button mat-button color="primary" (click)="editarUsuario()">Editar</button>
+            </div>
+        </form>
+    </div>
+</div>

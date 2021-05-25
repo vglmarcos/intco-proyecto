@@ -1,0 +1,153 @@
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-modal {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    height: 70px;
+}
+
+.title-modal h2 {
+    margin: 0;
+}
+
+.form-group-client {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.row-inputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mat-tab-content{
+    padding-top: 20px;
+}
+
+.form-input {
+    width: 48%; 
+}
+
+.form-input-solo {
+    width: 100%;
+}
+
+.select-prod {
+    width: 48%;
+}
+
+.ancho-largo {
+    width: 23%;
+}
+
+.footer-stepper {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-input-full {
+    width: 100%;
+}
+
+.add-btn {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.dark mat-icon {
+    color: #ECEFF1 !important;
+}
+
+.light mat-icon {
+    color: #fff !important;
+}
+
+
+.example-right-align {
+    text-align: right;
+}
+  
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.remove-flechitas::-webkit-outer-spin-button,
+input.remove-flechitas::-webkit-inner-spin-button {
+    display: none;
+}
+  
+input.example-right-align {
+    -moz-appearance: textfield;
+}
+
+table {
+    width: 100%;
+}
+
+.first-row {
+    margin-bottom: 10px;
+}
+
+.mat-column-nombre {
+    width: 30% !important;
+}
+
+.mat-column-tipo {
+    width: 15% !important;
+}
+
+.mat-column-dimensiones {
+    width: 13% !important;
+}
+
+.mat-column-cantidad {
+    width: 12% !important;
+}
+
+.mat-column-precio_unitario {
+    width: 17% !important;
+}
+
+.mat-column-total {
+    width: 12% !important;
+}
+
+.mat-column-eliminar {
+    width: 5% !important;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.form-agregar-proveedor {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 20px 20px;
+    flex-direction: column;
+}

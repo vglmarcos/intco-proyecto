@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { BuscarCotizacionComponent } from './pages/buscar-cotizacion/buscar-cotizacion.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes.component';
+import { BuscarProveedoresComponent } from './pages/buscar-proveedores/buscar-proveedores.component';
+import { BuscarUsuariosComponent } from './pages/buscar-usuarios/buscar-usuarios.component';
+import { BuscarProductosComponent } from './pages/buscar-productos/buscar-productos.component';
 
 
 const routes: Routes = [
@@ -15,8 +18,20 @@ const routes: Routes = [
     component: BuscarCotizacionComponent
   },
   { 
-    path: 'buscar-clientes',
+    path: 'buscar-cliente',
     component: BuscarClientesComponent
+  },
+  { 
+    path: 'buscar-proveedor',
+    component: BuscarProveedoresComponent
+  },
+  { 
+    path: 'buscar-usuario',
+    component: BuscarUsuariosComponent
+  },
+  { 
+    path: 'buscar-producto',
+    component: BuscarProductosComponent
   },
   {
     path: '',

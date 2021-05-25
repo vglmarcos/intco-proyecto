@@ -41,6 +41,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ConfirmarEliminarComponent } from './shared/confirmar-eliminar/confirmar-eliminar.component';
 import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes.component';
+import { BuscarProveedoresComponent } from './pages/buscar-proveedores/buscar-proveedores.component';
+import { AgregarProveedorComponent } from './pages/buscar-proveedores/agregar-proveedor/agregar-proveedor.component';
+import { EditarProveedorComponent } from 'src/app/pages/buscar-proveedores/editar-proveedor/editar-proveedor.component';
+import { BuscarUsuariosComponent } from 'src/app/pages/buscar-usuarios/buscar-usuarios.component';
+import { AgregarUsuarioComponent } from 'src/app/pages/buscar-usuarios/agregar-usuario/agregar-usuario.component';
+import { EditarUsuarioComponent } from 'src/app/pages/buscar-usuarios/editar-usuario/editar-usuario.component';
+import { BuscarProductosComponent } from 'src/app/pages/buscar-productos/buscar-productos.component';
+import { AgregarProductoComponent } from 'src/app/pages/buscar-productos/agregar-producto/agregar-producto.component';
+import { EditarProductoComponent } from 'src/app/pages/buscar-productos/editar-producto/editar-producto.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +61,16 @@ import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes
     AgregarCotizacionComponent,
     EditarCotizacionComponent,
     ConfirmarEliminarComponent,
-    BuscarClientesComponent
+    BuscarClientesComponent,
+    BuscarProveedoresComponent,
+    AgregarProveedorComponent,
+    EditarProveedorComponent,
+    BuscarUsuariosComponent,
+    AgregarUsuarioComponent,
+    EditarUsuarioComponent,
+    BuscarProductosComponent,
+    AgregarProductoComponent,
+    EditarProductoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,66 @@
+<div [ngClass]='[actualTheme, "main"]'>
+    <mat-toolbar class="title-modal">
+        <h2>Agregar Usuario</h2>
+    </mat-toolbar>
+    <div class="body-modal">
+        <form class="form-agregar-proveedor" [formGroup]="agregarUsuarioFormGroup">
+            <div class="row-inputs first-row">
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombreCtrl" required>
+                    <mat-error *ngIf="agregarUsuarioFormGroup.controls['nombreCtrl'].hasError('required')">
+                        El nombre es requerido.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Correo Electrónico</mat-label>
+                    <input matInput formControlName="correoCtrl" required>
+                    <mat-error *ngIf="agregarUsuarioFormGroup.controls['correoCtrl'].hasError('email') && !agregarUsuarioFormGroup.controls['correoCtrl'].hasError('required')">
+                        El correo no es válido.
+                    </mat-error>
+                    <mat-error *ngIf="agregarUsuarioFormGroup.controls['correoCtrl'].hasError('required')">
+                        El correo es requerido.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row-inputs first-row">
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="telefonoCtrl" required>
+                    <mat-error *ngIf="agregarUsuarioFormGroup.controls['telefonoCtrl'].hasError('required')">
+                        El teléfono es requerido.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Tipo</mat-label>
+                    <input matInput formControlName="tipoCtrl" required>
+                    <mat-error *ngIf="agregarUsuarioFormGroup.controls['tipoCtrl'].hasError('required')">
+                        El tipo es requerido.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row-inputs first-row">
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="usuarioCtrl" required>
+                    <mat-error *ngIf="agregarUsuarioFormGroup.controls['usuarioCtrl'].hasError('required')">
+                        El nombre de usuario es requerido.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" matInput formControlName="contraCtrl" required>
+                    <mat-error *ngIf="agregarUsuarioFormGroup.controls['contraCtrl'].hasError('required')">
+                        La contraseña es requerida.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="footer-stepper">
+                <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+                <button mat-button color="primary" (click)="agregarUsuario()">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>
