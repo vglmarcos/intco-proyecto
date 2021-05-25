@@ -37,7 +37,7 @@ export class BuscarProductosComponent implements OnInit {
     private datosTabla: tablaProveedores[] = [];
     public PRODUCTOS: IProducto[] = [];
 
-    displayedColumns: string[] = ['id', 'nombre', 'tipo', 'precio', 'eliminar', 'editar'];
+    displayedColumns: string[] = ['id', 'nombre', 'tipo', 'precio', 'editar', 'eliminar'];
     dataSource: MatTableDataSource<tablaProveedores>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;

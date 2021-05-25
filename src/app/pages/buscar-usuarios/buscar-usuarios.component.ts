@@ -39,7 +39,7 @@ export class BuscarUsuariosComponent implements OnInit {
     private datosTabla: tablaProveedores[] = [];
     public USUARIOS: IUsuario[] = [];
 
-    displayedColumns: string[] = ['id', 'nombre', 'correo', 'telefono', 'usuario', 'tipo', 'eliminar', 'editar'];
+    displayedColumns: string[] = ['id', 'nombre', 'correo', 'telefono', 'usuario', 'tipo', 'editar', 'eliminar'];
     dataSource: MatTableDataSource<tablaProveedores>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;

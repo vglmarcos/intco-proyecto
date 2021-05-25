@@ -27,7 +27,7 @@ export class AppComponent {
         case '/buscar-cliente':
           this.title = 'Lista de clientes';
           break;
-        case '/buscar-almacen':
+        case '/almacen':
           this.title = 'Inventario';
           break;
         case '/buscar-usuario':
