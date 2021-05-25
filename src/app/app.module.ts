@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -41,10 +40,20 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ConfirmarEliminarComponent } from './shared/confirmar-eliminar/confirmar-eliminar.component';
 import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes.component';
+import { BuscarProveedoresComponent } from './pages/buscar-proveedores/buscar-proveedores.component';
+import { AgregarProveedorComponent } from './pages/buscar-proveedores/agregar-proveedor/agregar-proveedor.component';
+import { EditarProveedorComponent } from 'src/app/pages/buscar-proveedores/editar-proveedor/editar-proveedor.component';
+import { BuscarUsuariosComponent } from 'src/app/pages/buscar-usuarios/buscar-usuarios.component';
+import { AgregarUsuarioComponent } from 'src/app/pages/buscar-usuarios/agregar-usuario/agregar-usuario.component';
+import { EditarUsuarioComponent } from 'src/app/pages/buscar-usuarios/editar-usuario/editar-usuario.component';
+import { BuscarProductosComponent } from 'src/app/pages/buscar-productos/buscar-productos.component';
+import { AgregarProductoComponent } from 'src/app/pages/buscar-productos/agregar-producto/agregar-producto.component';
+import { EditarProductoComponent } from 'src/app/pages/buscar-productos/editar-producto/editar-producto.component';
 import { EditarClientesComponent } from './pages/buscar-clientes/editar-clientes/editar-clientes.component';
 import { AlmacenComponent } from './pages/almacen/almacen.component';
 import { AgregarLaminaComponent } from './pages/almacen/agregar-lamina/agregar-lamina.component';
 import { EditarLaminaComponent } from './pages/almacen/editar-lamina/editar-lamina.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +66,15 @@ import { EditarLaminaComponent } from './pages/almacen/editar-lamina/editar-lami
     EditarCotizacionComponent,
     ConfirmarEliminarComponent,
     BuscarClientesComponent,
+    BuscarProveedoresComponent,
+    AgregarProveedorComponent,
+    EditarProveedorComponent,
+    BuscarUsuariosComponent,
+    AgregarUsuarioComponent,
+    EditarUsuarioComponent,
+    BuscarProductosComponent,
+    AgregarProductoComponent,
+    EditarProductoComponent,
     EditarClientesComponent,
     AlmacenComponent,
     AgregarLaminaComponent,

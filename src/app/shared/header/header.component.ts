@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public colorThemeService: ColorThemeService,
-    private location: Location,
     private router: Router,
   ) {
     this.colorThemeService.theme.subscribe((theme) => {

@@ -1,0 +1,36 @@
+<div [ngClass]='[actualTheme, "main"]'>
+    <mat-toolbar class="title-modal">
+        <h2>Editar Proveedor</h2>
+    </mat-toolbar>
+    <div class="body-modal">
+        <form class="form-agregar-proveedor" [formGroup]="agregarProveedorFormGroup">
+            <div class="row-inputs first-row">
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombreCtrl" required>
+                    <mat-error *ngIf="agregarProveedorFormGroup.controls['nombreCtrl'].hasError('required')">
+                        El nombre es requerido.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-input">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="telefonoCtrl" required>
+                    <mat-error *ngIf="agregarProveedorFormGroup.controls['telefonoCtrl'].hasError('required')">
+                        El teléfono es requerido.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="outline" class="form-input-solo">
+                <mat-label>Ubicación</mat-label>
+                <input matInput formControlName="ubicacionCtrl" required>
+                <mat-error *ngIf="agregarProveedorFormGroup.controls['ubicacionCtrl'].hasError('required')">
+                    La ubicación es requerida.
+                </mat-error>
+            </mat-form-field>
+            <div class="footer-stepper">
+                <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+                <button mat-button color="primary" (click)="EditarProveedor()">Editar</button>
+            </div>
+        </form>
+    </div>
+</div>
