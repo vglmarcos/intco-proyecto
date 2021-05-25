@@ -13,6 +13,13 @@
                                 <mat-form-field appearance="outline" class="form-input">
                                     <mat-label>Nombre</mat-label>
                                     <input matInput formControlName="nombreCtrl" required>
+                                    <!-- <mat-autocomplete [class]="actualTheme" #auto="matAutocomplete">
+                                        <mat-option [color]="color" (mouseover)=" color = 'accent'"
+                                            (mouseout)=" color = 'primary'" [ngClass]='[actualTheme]'
+                                            *ngFor="let cliente of filteredOptionsClientes | async" [value]="cliente.nombre">
+                                            {{cliente.nombre}}
+                                        </mat-option>
+                                    </mat-autocomplete> -->
                                     <mat-error *ngIf="firstFormGroup.controls['nombreCtrl'].hasError('required')">
                                         El nombre es requerido.
                                     </mat-error>

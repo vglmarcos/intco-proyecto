@@ -120,7 +120,7 @@ export class BuscarCotizacionComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result.res) {
-        this.cotizacionService.eliminarClienteDelete(cot).subscribe(res => {
+        this.cotizacionService.eliminarCotizacionDelete(cot).subscribe(res => {
           this.snackBarService.greenSnackBar('Se ha eliminado la cotizacion');
           this.iniciarDatos();
         });

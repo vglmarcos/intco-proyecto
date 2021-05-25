@@ -41,6 +41,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ConfirmarEliminarComponent } from './shared/confirmar-eliminar/confirmar-eliminar.component';
 import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes.component';
+import { EditarClientesComponent } from './pages/buscar-clientes/editar-clientes/editar-clientes.component';
+import { AlmacenComponent } from './pages/almacen/almacen.component';
+import { AgregarLaminaComponent } from './pages/almacen/agregar-lamina/agregar-lamina.component';
+import { EditarLaminaComponent } from './pages/almacen/editar-lamina/editar-lamina.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,11 @@ import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes
     AgregarCotizacionComponent,
     EditarCotizacionComponent,
     ConfirmarEliminarComponent,
-    BuscarClientesComponent
+    BuscarClientesComponent,
+    EditarClientesComponent,
+    AlmacenComponent,
+    AgregarLaminaComponent,
+    EditarLaminaComponent
   ],
   imports: [
     BrowserModule,

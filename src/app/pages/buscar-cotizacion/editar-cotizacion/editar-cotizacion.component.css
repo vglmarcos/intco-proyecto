@@ -73,6 +73,14 @@
     margin-right: 10px;
 }
 
+.dark mat-icon {
+    color: #ECEFF1 !important;
+}
+
+.light mat-icon {
+    color: #fff !important;
+}
+
 .example-right-align {
     text-align: right;
 }

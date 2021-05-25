@@ -43,7 +43,7 @@ export const opciones: IOption[] = [
     },
     {
         image: 'assets/img/almacen.png',
-        route: '/buscar-cotizacion',
+        route: '/almacen',
         image_width: '50px',
         image_heigth: '50px',
         tooltip: 'Almacen',
@@ -59,7 +59,7 @@ export const opciones: IOption[] = [
     },
     {
         image: 'assets/img/clientes.png',
-        route: '/buscar-clientes',
+        route: '/buscar-cliente',
         image_width: '50px',
         image_heigth: '50px',
         tooltip: 'Clientes',

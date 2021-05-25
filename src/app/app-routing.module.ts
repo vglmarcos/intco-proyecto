@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BuscarCotizacionComponent } from './pages/buscar-cotizacion/buscar-cotizacion.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BuscarClientesComponent } from './pages/buscar-clientes/buscar-clientes.component';
-
+import { AlmacenComponent } from './pages/almacen/almacen.component';
 
 const routes: Routes = [
   {
@@ -15,8 +15,12 @@ const routes: Routes = [
     component: BuscarCotizacionComponent
   },
   { 
-    path: 'buscar-clientes',
+    path: 'buscar-cliente',
     component: BuscarClientesComponent
+  },
+  {
+    path: 'almacen',
+    component: AlmacenComponent
   },
   {
     path: '',
