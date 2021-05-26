@@ -21,6 +21,10 @@ import { ConfirmarEliminarComponent } from 'src/app/shared/confirmar-eliminar/co
 import { MatDialog } from '@angular/material/dialog';
 import { VentaService } from 'src/app/api/venta/venta.service';
 import { IVenta } from 'src/app/models/IVenta';
+import { LaminaService } from 'src/app/api/lamina/lamina.service';
+import { ILamina } from 'src/app/models/ILamina';
+import { FacturaService } from 'src/app/api/factura/factura.service';
+import { IFactura } from 'src/app/models/IFactura';
 
 export interface item {
   id_producto: number,
@@ -54,13 +58,19 @@ export class EditarVentaComponent implements OnInit {
 
     public filteredOptions: Observable<IProducto[]>;
     public PRODUCTOS: IProducto[];
+    private COTIZACIONES: ICotizacion[];
 
     public checked: boolean = false;
 
     public firstFormGroup: FormGroup;
     public secondFormGroup: FormGroup;
+    public LAMINAS: ILamina[];
 
-    public VENTAS: IVenta[];
+    public venta: IVenta = {
+      id: 0,
+      id_cotizacion: 0,
+      estado: ''
+    };
 
     public cliente: ICliente = {
         nombre: '',
@@ -96,14 +106,16 @@ export class EditarVentaComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<EditarVentaComponent>,
         public dialog: MatDialog,
-        @Inject(MAT_DIALOG_DATA) public data: ICotizacion,
+        @Inject(MAT_DIALOG_DATA) public data: IVenta,
         public colorThemeService: ColorThemeService,
         private _formBuilder: FormBuilder,
         private productoService: ProductoService,
         private clienteService: ClienteService,
         private cotizacionService: CotizacionService,
         public snackBarService: SnackBarService,
-        public ventaService: VentaService
+        public ventaService: VentaService,
+        public laminaService: LaminaService,
+        private facturaService: FacturaService
     ) {
         this.actualizarDatos();
         this.colorThemeService.theme.subscribe((theme) => {
@@ -111,28 +123,36 @@ export class EditarVentaComponent implements OnInit {
             this.viewColor();
         });
 
-        this.cotizacion = this.data;
-        
-        this.checked = (this.ventas.estado === 'Aprobada') ? false : true;
+        this.venta = this.data;
 
-        this.productoService.obtenerProductosGet().subscribe(productos => {
-            for(let i = 0; i < this.data.carrito.length; i++) {
-                let producto = productos.find(producto => producto.id === this.data.carrito[i].id_producto)
+        this.cotizacion.id = this.venta.id_cotizacion;
+
+        this.cotizacionService.obtenerCotizacionesGet().subscribe(cotizaciones => {
+          this.COTIZACIONES =cotizaciones;
+          this.cotizacion = this.COTIZACIONES.find(cotizacion => cotizacion.id === this.venta.id_cotizacion);
+          this.productoService.obtenerProductosGet().subscribe(productos => {
+            for(let i = 0; i < this.cotizacion.carrito.length; i++) {
+                let producto = productos.find(producto => producto.id === this.cotizacion.carrito[i].id_producto)
                 console.log(producto);
                 let item: item = {
-                    cantidad: this.data.carrito[i].cantidad,
-                    dimensiones: this.data.carrito[i].dimensiones,
-                    id_producto: this.data.carrito[i].id_producto,
+                    cantidad: this.cotizacion.carrito[i].cantidad,
+                    dimensiones: this.cotizacion.carrito[i].dimensiones,
+                    id_producto: this.cotizacion.carrito[i].id_producto,
                     nombre: producto.nombre,
                     precio_unitario: producto.precio,
                     tipo: producto.tipo,
-                    total: this.data.carrito[i].dimensiones.largo * this.data.carrito[i].dimensiones.ancho * this.data.carrito[i].cantidad * producto.precio
+                    total: this.cotizacion.carrito[i].dimensiones.largo * this.cotizacion.carrito[i].dimensiones.ancho * this.cotizacion.carrito[i].cantidad * producto.precio
                 }
                 this.productosCarrito.push(item);
             }
             this.dataSource = new MatTableDataSource(this.productosCarrito);
             this.dataSource.paginator = this.paginator;
         });
+        })
+        console.log(this.checked);
+
+
+        
     }
 
     actualizarDatos() {
@@ -165,7 +185,7 @@ export class EditarVentaComponent implements OnInit {
         });
         this.clienteService.obtenerClientesGet().subscribe(clientes => {
             console.log(this.data)
-            this.cliente = clientes.find(cliente => cliente.id === this.data.id_cliente);
+            this.cliente = clientes.find(cliente => cliente.id === this.cotizacion.id_cliente);
             console.log(this.cliente)
             this.firstFormGroup.controls['nombreCtrl'].setValue(this.cliente.nombre);
             this.firstFormGroup.controls['correoCtrl'].setValue(this.cliente.correo);
@@ -419,21 +439,49 @@ export class EditarVentaComponent implements OnInit {
     }
 
     editarCotizacion() {
-        this.ventas.estado = this.checked ? 'Finalizada' : 'Aprobada';
+        this.data.estado = this.checked ? 'Finalizada' : 'Aprobada';
+        console.log(this.data.estado);
+        this.data.id_cotizacion = this.cotizacion.id;
         if(this.cotizacion.estado == 'Completada') {
+            this.laminaService.obtenerLaminasGet().subscribe(laminas => {
+                this.LAMINAS = laminas;
+
+                for (let i = 0; i < this.LAMINAS.length; i++) {
+                    this.productoService.obtenerProductosGet().subscribe(productos => {
+                        for(let j = 0; j < this.cotizacion.carrito.length; j++) {
+                            let producto = productos.find(producto => producto.id === this.cotizacion.carrito[j].id_producto)
+                            if (producto.tipo === this.LAMINAS[i].nombre){
+                                this.LAMINAS[i].cantidad -= (this.cotizacion.carrito[j].dimensiones.ancho * this.cotizacion.carrito[j].dimensiones.largo * this.cotizacion.carrito[j].cantidad);
+                                this.laminaService.editarLaminaPut(this.LAMINAS[i]).subscribe(res => {
+                                    console.log('Lamina Actualizada');
+                                });
+                                console.log(this.LAMINAS[i].cantidad);
+                            }
+                        }
+                    });
+                }
+            });
             this.cotizacionService.editarCotizacionPut(this.cotizacion).subscribe(res => {
                 console.log('Venta guardada con exito')
                 let venta: IVenta = {
-                    estado: this.ventas.estado,
-                    id_cotizacion: res.id
+                    estado: this.checked ? 'Finalizada' : 'Aprobada',
+                    id_cotizacion: this.data.id
                 }
-                this.ventaService.editarVentaPut(venta).subscribe(res => {
+
+                console.log(venta);
+                this.ventaService.editarVentaPut(this.data).subscribe(res => {
                     console.log('Venta guardada con exito')
                 });
             });
             this.snackBarService.greenSnackBar('Venta guardada con éxito');
             this.dialogRef.close({
                 res: "realizada"
+            });
+            let factura: IFactura = {
+                id_venta: this.data.id,
+            }
+            this.facturaService.agregarFacturaPost(factura).subscribe(res => {
+                console.log('Facutura guardada con exito')
             });
         }
     }

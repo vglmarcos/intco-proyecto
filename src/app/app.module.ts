@@ -55,6 +55,7 @@ import { AgregarLaminaComponent } from './pages/almacen/agregar-lamina/agregar-l
 import { EditarLaminaComponent } from './pages/almacen/editar-lamina/editar-lamina.component';
 import { BuscarVentaComponent } from './pages/buscar-venta/buscar-venta.component';
 import { EditarVentaComponent } from './pages/buscar-venta/editar-venta/editar-venta.component';
+import { BuscarFacturaComponent } from './pages/buscar-factura/buscar-factura.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { EditarVentaComponent } from './pages/buscar-venta/editar-venta/editar-v
     AgregarLaminaComponent,
     EditarLaminaComponent,
     BuscarVentaComponent,
-    EditarVentaComponent
+    EditarVentaComponent,
+    BuscarFacturaComponent
   ],
   imports: [
     BrowserModule,

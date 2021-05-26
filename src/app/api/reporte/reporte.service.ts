@@ -7,7 +7,7 @@ import { IReporte } from 'src/app/models/IReporte';
 })
 export class ReporteService {
 
-  private basePath = "http://localhost:3000";
+  private basePath = "https://vitrum-app.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 

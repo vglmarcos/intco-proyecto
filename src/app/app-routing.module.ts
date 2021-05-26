@@ -8,6 +8,7 @@ import { BuscarUsuariosComponent } from './pages/buscar-usuarios/buscar-usuarios
 import { BuscarProductosComponent } from './pages/buscar-productos/buscar-productos.component';
 import { AlmacenComponent } from './pages/almacen/almacen.component';
 import { BuscarVentaComponent } from './pages/buscar-venta/buscar-venta.component';
+import { BuscarFacturaComponent } from './pages/buscar-factura/buscar-factura.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   { 
     path: 'buscar-venta',
     component: BuscarVentaComponent
+  },
+  {
+    path: 'buscar-factura',
+    component: BuscarFacturaComponent
   },
   { 
     path: 'buscar-cliente',

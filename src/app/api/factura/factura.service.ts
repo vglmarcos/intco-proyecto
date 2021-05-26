@@ -7,7 +7,7 @@ import { IFactura } from 'src/app/models/IFactura';
 })
 export class FacturaService {
 
-  private basePath = "http://localhost:3000";
+  private basePath = "https://vitrum-app.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,19 +15,19 @@ export class FacturaService {
     return this.httpClient.request<IFactura[]>('get', `${this.basePath}/api/factura/obtenerFacturas`);
   }
 
-  agregarClientePost(factura: IFactura) {
+  agregarFacturaPost(factura: IFactura) {
     return this.httpClient.request('post', `${this.basePath}/api/factura/agregarFactura`, {
       body: factura
     });
   }
 
-  editarClientePut(factura: IFactura) {
+  editarFacturaPut(factura: IFactura) {
     return this.httpClient.request('put', `${this.basePath}/api/factura/editarFactura`, {
       body: factura
     });
   }
 
-  eliminarClienteDelete(factura: IFactura) {
+  eliminarFacturaDelete(factura: IFactura) {
     return this.httpClient.request('delete', `${this.basePath}/api/factura/eliminarFactura`, {
       body: factura
     });

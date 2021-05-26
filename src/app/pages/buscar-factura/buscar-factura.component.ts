@@ -14,24 +14,25 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ICotizacion } from 'src/app/models/ICotizacion';
 import { CotizacionService } from 'src/app/api/cotizacion/cotizacion.service';
 import { EditarVentaComponent } from 'src/app/pages/buscar-venta/editar-venta/editar-venta.component';
+import { FacturaService } from 'src/app/api/factura/factura.service';
+import { IFactura } from 'src/app/models/IFactura';
 
-export interface tablaVentas {
+export interface tablaFacturas {
   id: number,
   nombre_cliente: string,
   fecha: Date,
-  estado: string,
   total: number
 }
 
 @Component({
-  selector: 'app-buscar-venta',
-  templateUrl: './buscar-venta.component.html',
-  styleUrls: ['./buscar-venta.component.css'],
+  selector: 'app-buscar-factura',
+  templateUrl: './buscar-factura.component.html',
+  styleUrls: ['./buscar-factura.component.css'],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() }  // Here
   ]
 })
-export class BuscarVentaComponent implements OnInit {
+export class BuscarFacturaComponent implements OnInit {
 
   color = 'primary';
   public actualTheme: string;
@@ -41,10 +42,11 @@ export class BuscarVentaComponent implements OnInit {
   private COTIZACIONES: ICotizacion[];
   private CLIENTES: ICliente[];
   private VENTAS: IVenta[];
-  private datosTabla: tablaVentas[] = [];
+  private FACTURAS: IFactura[];
+  private datosTabla: tablaFacturas[] = [];
 
-  displayedColumns: string[] = ['id', 'nombre', 'fecha', 'estado', 'total', 'editar', 'eliminar'];
-  dataSource: MatTableDataSource<tablaVentas>;
+  displayedColumns: string[] = ['id', 'nombre', 'fecha', 'total'];
+  dataSource: MatTableDataSource<tablaFacturas>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -55,7 +57,8 @@ export class BuscarVentaComponent implements OnInit {
     private cotizacionService: CotizacionService,
     private clienteService: ClienteService,
     private ventaService: VentaService,
-    public snackBarService: SnackBarService
+    public snackBarService: SnackBarService,
+    private facturaService: FacturaService
   ) {
 
     this.iniciarDatos();
@@ -72,32 +75,35 @@ export class BuscarVentaComponent implements OnInit {
   }
 
   iniciarDatos() {
-    this.ventaService.obtenerVentasGet().subscribe(ventas => {
-      this.VENTAS = ventas;
-      this.cotizacionService.obtenerCotizacionesGet().subscribe(cotizaciones => {
-        this.COTIZACIONES = cotizaciones;
-        this.clienteService.obtenerClientesGet().subscribe(clientes => {
-          this.CLIENTES = clientes;
-  
-          this.datosTabla = [];
-  
-          for (let i = 0; i < this.VENTAS.length; i++) {
-              this.datosTabla.push({
-                nombre_cliente: this.buscarClientePorID(this.COTIZACIONES[i].id_cliente).nombre,
-                // estado: this.VENTAS[i].estado,
-                estado: this.VENTAS[i].estado,
-                fecha: this.VENTAS[i].createdAt,
-                id: this.VENTAS[i].id,
-                total: this.COTIZACIONES[i].total
-              });
-          }
-  
-          this.dataSource = new MatTableDataSource(this.datosTabla);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+    this.facturaService.obtenerFacturasGet().subscribe(facturas => {
+      this.FACTURAS = facturas;
+      this.ventaService.obtenerVentasGet().subscribe(ventas => {
+        this.VENTAS = ventas;
+        this.cotizacionService.obtenerCotizacionesGet().subscribe(cotizaciones => {
+          this.COTIZACIONES = cotizaciones;
+          this.clienteService.obtenerClientesGet().subscribe(clientes => {
+            this.CLIENTES = clientes;
+    
+            this.datosTabla = [];
+    
+            for (let i = 0; i < this.FACTURAS.length; i++) {
+                this.datosTabla.push({
+                  nombre_cliente: this.buscarClientePorID(this.COTIZACIONES[i].id_cliente).nombre,
+                  // estado: this.VENTAS[i].estado,
+                  fecha: this.FACTURAS[i].createdAt,
+                  id: this.FACTURAS[i].id,
+                  total: this.COTIZACIONES[i].total
+                });
+            }
+    
+            this.dataSource = new MatTableDataSource(this.datosTabla);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          });
         });
       });
     })
+
 
   }
 
@@ -122,56 +128,6 @@ export class BuscarVentaComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  onDelete(venta: IVenta) {
-    let ven = this.VENTAS.find(vent => vent.id === venta.id);
-    const dialogRef = this.dialog.open(ConfirmarEliminarComponent, {
-      data: 'Venta',
-      autoFocus: false
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result.res) {
-        this.ventaService.eliminarVentaDelete(ven).subscribe(res => {
-          this.snackBarService.greenSnackBar('Se ha eliminado la Venta');
-          this.iniciarDatos();
-          this.onDeleteCotizacion(ven.id_cotizacion);
-        });
-      } else {
-        this.snackBarService.redSnackBar('Eliminación cancelada');
-        console.log(`Exit on click outside`);
-      }
-    });
-  }
-
-  onDeleteCotizacion(idCot: number){
-    this.cotizacionService.obtenerCotizacionesGet().subscribe(cotizaciones => {
-      this.COTIZACIONES = cotizaciones;
-      let cotizacionesCliente = this.COTIZACIONES.filter(cotizacion => cotizacion.id === idCot);
-      for (let i = 0; i < cotizacionesCliente.length; i++){
-        this.cotizacionService.eliminarCotizacionDelete(cotizacionesCliente[i]).subscribe(res => {
-        });
-      }
-    });
-  }
-  
-  editarCotizacion(venta: IVenta) {
-    let ven = this.VENTAS.find(vent => vent.id === venta.id);
-    const dialogRef = this.dialog.open(EditarVentaComponent, {
-      autoFocus: false,
-      data: ven
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        if (result.res === "realizada") {
-          this.iniciarDatos();
-        }
-      } else {
-        console.log(`Exit on click outside`);
-      }
-    });
   }
 
 }

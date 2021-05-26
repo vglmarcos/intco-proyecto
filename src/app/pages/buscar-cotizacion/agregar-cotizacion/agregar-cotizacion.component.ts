@@ -417,6 +417,16 @@ export class AgregarCotizacionComponent implements OnInit {
                 res: "realizada"
             });
         }
+        else {
+            this.cotizacionService.agregarCotizacionPost(this.cotizacion).subscribe(res => {
+                console.log('Cotizacion guardada con exito')
+            });
+            this.snackBarService.greenSnackBar('Cotizacion guardada con éxito');
+            this.dialogRef.close({
+                res: "realizada"
+            });
+        }
+
     }
 }
 
